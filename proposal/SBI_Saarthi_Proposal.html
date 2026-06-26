@@ -6,681 +6,458 @@
 <title>SBI Saarthi — Proposal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Devanagari:wght@500;600&family=Noto+Sans+Tamil:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Tamil:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0A1A30; --navy2:#102A46; --navy3:#173a5e;
-    --gold:#E7A23A; --gold2:#F6B84B; --gold-soft:#F3D7A0;
-    --teal:#1E9C8C; --teal2:#37D6C3;
-    --paper:#F6F2E9; --paper2:#EFEADE;
-    --ink:#191510; --muted:#736857; --line:#D8CFBE;
-    --red:#C0473A; --green:#3E7C58;
-    --disp:'Archivo',sans-serif; --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',monospace;
+    --paper:#FAF9F4; --paper2:#F2F0E6; --ink:#17171F; --ink2:#23232E;
+    --saff:#FFAA15; --saff2:#FFC24A; --teal:#0FB6A2; --teal2:#37D6C3; --coral:#FF6A45;
+    --muted:#6E6E74; --line:#E4E2D6; --white:#FFFFFF;
+    --disp:'Bricolage Grotesque',sans-serif; --sans:'Hanken Grotesk',sans-serif; --mono:'Geist Mono',monospace;
     --indic:'Noto Sans Devanagari','Noto Sans Tamil',sans-serif;
   }
   *{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
-  html,body{margin:0;padding:0;background:#33373d;}
+  html,body{margin:0;padding:0;background:#2c2c30;}
   @page{ size:A4; margin:0; }
-  .page{ position:relative; width:210mm; height:296mm; overflow:hidden; background:var(--paper); color:var(--ink); page-break-after:always; font-family:var(--serif);}
+  .page{ position:relative; width:210mm; height:296mm; overflow:hidden; background:var(--paper); color:var(--ink); page-break-after:always; font-family:var(--sans); }
   .page:last-child{ page-break-after:avoid; }
-  .pad{ position:absolute; inset:0; padding:17mm 16mm; display:flex; flex-direction:column; }
+  .pad{ position:absolute; inset:0; padding:15mm 15mm; display:flex; flex-direction:column; }
 
-  .kicker{ font-family:var(--mono); font-size:8.2pt; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); font-weight:600;}
-  .secno{ font-family:var(--mono); font-size:9pt; letter-spacing:.2em; color:var(--muted); }
-  h1.sec{ font-family:var(--disp); font-weight:800; font-size:30pt; line-height:.98; letter-spacing:-.015em; margin:3mm 0 0; color:var(--navy);}
-  h1.sec .em{ color:var(--gold); }
-  h1.sec .tl{ color:var(--teal); }
-  .lead{ font-family:var(--serif); font-size:11pt; line-height:1.5; color:#34301f; }
-  .small{ font-size:9.5pt; line-height:1.5; }
+  /* ---- header system ---- */
+  .ix{ display:flex; align-items:center; gap:4mm; }
+  .ix .sq{ width:13mm; height:13mm; border-radius:3mm; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; font-size:17pt; line-height:1; }
+  .ix .sq.saff{ background:var(--saff); color:var(--ink); } .ix .sq.teal{ background:var(--teal); color:var(--ink); } .ix .sq.ink{ background:var(--ink); color:var(--white); } .ix .sq.coral{ background:var(--coral); color:var(--white); }
+  .ix .kick{ font-family:var(--mono); font-size:8.4pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  h1.big{ font-family:var(--disp); font-weight:800; font-size:33pt; line-height:.99; letter-spacing:-.02em; margin:7mm 0 0; color:var(--ink); }
+  h1.big .em{ color:var(--saff); } h1.big .tl{ color:var(--teal); }
+  .lead{ font-family:var(--sans); font-size:11pt; line-height:1.5; color:#34343c; }
   .mono{ font-family:var(--mono); }
-  .hr{ height:1px; background:var(--line); border:0; margin:0; }
-  .rule-gold{ height:2.5px; width:54px; background:var(--gold); border:0; }
 
-  /* COVER */
-  .cover{ background:var(--navy); color:#EFE7D6; }
-  .cover .pad{ padding:18mm 16mm; }
-  .cover-top{ display:flex; justify-content:space-between; align-items:flex-start; font-family:var(--mono); font-size:8pt; letter-spacing:.22em; text-transform:uppercase; color:#8aa0b8; z-index:3;}
-  .cover-top .badge{ color:var(--gold); border:1px solid rgba(231,162,58,.5); padding:2.4mm 3.2mm; border-radius:1mm;}
-  .wordmark{ z-index:3; margin-top:auto;}
-  .wordmark .mk{ font-family:var(--disp); font-weight:900; font-size:72pt; letter-spacing:-.03em; line-height:.9; color:#fff;}
-  .wordmark .mk b{ color:var(--gold);}
-  .tagline{ font-family:var(--disp); font-weight:600; font-size:15pt; letter-spacing:-.01em; color:var(--gold2); margin-top:4mm;}
-  .manifesto{ font-family:var(--serif); font-size:12pt; line-height:1.55; color:#D7DEE6; max-width:150mm; margin-top:7mm;}
-  .manifesto b{ color:#fff; font-weight:500;}
-  .manifesto .tl{ color:var(--teal2); font-weight:500; }
-  .teamname{ font-family:var(--mono); font-size:10.5pt; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--gold2); margin-bottom:5mm; z-index:3;}
-  .teamname::before{ content:''; display:inline-block; width:15mm; height:2px; background:var(--gold); vertical-align:middle; margin-right:4mm; margin-bottom:1.2mm;}
-  .teamname .lead{ color:#8aa0b8; font-weight:500;}
-  .cover-stat{ display:flex; gap:8mm; margin-top:9mm; z-index:3;}
-  .cover-stat .s .n{ font-family:var(--disp); font-weight:800; font-size:23pt; color:var(--gold2); line-height:1;}
-  .cover-stat .s .l{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.12em; text-transform:uppercase; color:#93a6bb; margin-top:1.8mm; max-width:46mm; line-height:1.35;}
-  .cover-foot{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:11mm; z-index:3; border-top:1px solid rgba(255,255,255,.14); padding-top:5mm;}
-  .cover-foot .team{ font-family:var(--mono); font-size:7.5pt; letter-spacing:.01em; color:#cdd7e2; white-space:nowrap; margin-bottom:7mm;}
-  .cover-foot .team b{ color:var(--gold);}
-  .cover-foot .ps{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.08em; color:#7e93a9; text-align:right; max-width:62mm; line-height:1.4;}
-  .radar{ position:absolute; right:-60mm; top:-30mm; width:230mm; height:230mm; z-index:1;}
+  /* ---- blocks ---- */
+  .block{ border-radius:3.4mm; padding:6mm; }
+  .b-ink{ background:var(--ink); color:#EDEDF2; } .b-saff{ background:var(--saff); color:var(--ink); } .b-teal{ background:var(--teal); color:#08221F; } .b-coral{ background:var(--coral); color:#fff; }
+  .b-white{ background:var(--white); color:var(--ink); box-shadow:0 2mm 7mm rgba(20,18,10,.07); }
+  .b-tint{ background:var(--paper2); color:var(--ink); }
 
-  /* stat cards */
-  .cards{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:7mm;}
-  .card{ border:1px solid var(--line); border-top:3px solid var(--gold); padding:5.5mm 4.5mm; background:var(--paper2);}
-  .card .n{ font-family:var(--disp); font-weight:800; font-size:23pt; color:var(--navy); line-height:1;}
-  .card .n s{ color:var(--red); text-decoration:none;}
-  .card .l{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:2.8mm; line-height:1.45;}
+  /* cover */
+  .cover{ background:var(--ink); color:#EDEDF2; }
+  .cover .blob{ position:absolute; border-radius:50%; filter:blur(2px); }
+  .cover-top{ display:flex; justify-content:space-between; align-items:center; z-index:3; }
+  .cover-top .l{ font-family:var(--mono); font-size:8.4pt; letter-spacing:.16em; text-transform:uppercase; color:#9a9aa6; }
+  .cover-top .pill{ font-family:var(--mono); font-size:8.4pt; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); background:var(--saff); padding:2.2mm 3.6mm; border-radius:2mm; }
+  .team-eyebrow{ font-family:var(--mono); font-size:10pt; font-weight:600; letter-spacing:.34em; text-transform:uppercase; color:var(--teal2); margin-top:15mm; z-index:3; }
+  .mk{ font-family:var(--disp); font-weight:800; font-size:50pt; letter-spacing:-.03em; line-height:1.06; margin:8mm 0 0; white-space:nowrap; z-index:3; color:#fff; }
+  .mk b{ color:var(--saff); }
+  .tag-block{ display:inline-block; background:var(--saff); color:var(--ink); font-family:var(--disp); font-weight:700; font-size:16pt; letter-spacing:-.01em; padding:3mm 5mm; border-radius:2.6mm; margin-top:18mm; z-index:3; }
+  .manifesto{ font-family:var(--sans); font-size:11.6pt; line-height:1.56; color:#C9C9D2; max-width:158mm; margin-top:7mm; z-index:3; }
+  .manifesto b{ color:#fff; font-weight:600; } .manifesto .tl{ color:var(--teal2); font-weight:600; }
+  .cstats{ display:flex; gap:4mm; margin-top:8mm; z-index:3; }
+  .cstat{ flex:1; border-radius:3mm; padding:5mm; } .cstat .n{ font-family:var(--disp); font-weight:800; font-size:22pt; line-height:1; } .cstat .l{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.06em; text-transform:uppercase; margin-top:2.4mm; line-height:1.35; }
+  .cstat.s1{ background:var(--saff); color:var(--ink); } .cstat.s1 .l{ color:#6a4a06; }
+  .cstat.s2{ background:var(--teal); color:#08221F; } .cstat.s2 .l{ color:#0a4a44; }
+  .cstat.s3{ background:#23232E; color:#fff; border:1px solid #3a3a47; } .cstat.s3 .l{ color:#9a9aa6; }
+  .cover-foot{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:auto; padding-top:5mm; border-top:1px solid #33333f; z-index:3; }
+  .cover-foot .team{ font-family:var(--mono); font-size:8pt; color:#cfcfd8; } .cover-foot .team b{ color:var(--saff); }
+  .cover-foot .ps{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.06em; color:#83838f; text-align:right; max-width:64mm; line-height:1.45; }
 
-  /* needle viz */
-  .needle-wrap{ display:flex; gap:8mm; align-items:center; margin-top:8mm; padding:7.5mm; background:var(--navy); color:#dbe3ec;}
-  .needle-wrap svg{ flex:0 0 auto;}
-  .needle-wrap .t .big{ font-family:var(--disp); font-weight:800; font-size:26pt; color:#fff; line-height:1;}
-  .needle-wrap .t .big b{ color:var(--gold2);}
-  .needle-wrap .t p{ font-family:var(--serif); font-size:11pt; line-height:1.55; color:#aebccb; margin:3.5mm 0 0; max-width:104mm;}
-  .needle-wrap .t p em{ color:var(--gold2); font-style:normal; font-family:var(--mono); font-size:9.8pt;}
+  /* footer */
+  .ft{ position:absolute; left:15mm; right:15mm; bottom:9mm; display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:7.4pt; letter-spacing:.12em; text-transform:uppercase; color:#9a968a; }
+  .ft .d{ display:inline-block; width:2.4mm; height:2.4mm; border-radius:50%; background:var(--saff); margin-right:2.4mm; vertical-align:middle; }
+  .ft b{ color:var(--ink); }
 
-  /* anatomy flow */
-  .anat{ margin-top:9mm; }
-  .anat .lbl{ font-family:var(--mono); font-size:8pt; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin-bottom:4mm;}
-  .flowrow{ display:flex; align-items:stretch; gap:2.5mm; }
-  .fcell{ flex:1; border:1px solid var(--line); border-top:3px solid var(--navy); padding:4mm 3.4mm; background:var(--paper2);}
-  .fcell .fi{ font-family:var(--mono); font-size:7.8pt; color:var(--gold);}
-  .fcell .ft{ font-family:var(--disp); font-weight:700; font-size:11pt; color:var(--navy); margin:2mm 0 1.6mm; line-height:1.05;}
-  .fcell .fd{ font-family:var(--serif); font-size:8.8pt; line-height:1.38; color:#3a352a;}
-  .farrow{ align-self:center; color:var(--gold); font-family:var(--disp); font-weight:800; font-size:14pt;}
+  /* problem cards */
+  .trio{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:8mm; }
+  .pcard{ border-radius:3.4mm; padding:5.5mm; min-height:42mm; display:flex; flex-direction:column; }
+  .pcard .pn{ font-family:var(--disp); font-weight:800; font-size:16pt; }
+  .pcard .pp{ font-family:var(--sans); font-size:10pt; line-height:1.48; margin-top:auto; }
+  .bandstat{ margin-top:6mm; border-radius:3.4mm; padding:6.5mm 7mm; background:var(--ink); color:#fff; display:flex; align-items:center; }
+  .bandstat .x{ font-family:var(--disp); font-weight:700; font-size:19pt; letter-spacing:-.01em; line-height:1.18; }
+  .bandstat .x b{ color:var(--saff); } .bandstat .x i{ color:var(--teal2); font-style:normal; }
+  .anat{ display:flex; align-items:stretch; gap:3mm; margin-top:6mm; }
+  .astep{ flex:1; border-radius:3mm; padding:4.4mm; background:var(--white); box-shadow:0 2mm 6mm rgba(20,18,10,.06); }
+  .astep .ai{ font-family:var(--mono); font-size:8pt; color:var(--saff); font-weight:600; }
+  .astep .at{ font-family:var(--disp); font-weight:700; font-size:11.5pt; margin:2mm 0 1.4mm; }
+  .astep .ad{ font-family:var(--sans); font-size:8.8pt; line-height:1.4; color:#46464e; }
+  .acon{ align-self:center; color:var(--saff); font-family:var(--disp); font-weight:800; font-size:15pt; }
 
   /* forces */
-  .forces{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm; margin-top:12mm;}
-  .force .num{ font-family:var(--mono); font-size:8pt; color:var(--gold); letter-spacing:.1em;}
-  .force h3{ font-family:var(--disp); font-weight:700; font-size:13.2pt; color:var(--navy); margin:3mm 0 2.4mm; line-height:1.08;}
-  .force p{ font-family:var(--serif); font-size:10.6pt; line-height:1.74; color:#3a352a; margin:0;}
-  .force .stat{ font-family:var(--mono); font-weight:600; font-size:9.5pt; color:var(--navy); display:block; margin-top:3mm; border-left:2px solid var(--gold); padding-left:2.5mm;}
-  .gap-band{ margin-top:12mm; background:var(--navy); color:#e7eef5; padding:13mm; position:relative;}
-  .gap-band .lbl{ font-family:var(--mono); font-size:8pt; letter-spacing:.28em; color:var(--gold); text-transform:uppercase;}
-  .gap-band p{ font-family:var(--serif); font-size:14pt; line-height:1.62; margin:3.5mm 0 0; color:#eef3f8;}
-  .gap-band p b{ color:var(--gold2); font-weight:500;}
-  .gap-band p .tl{ color:var(--teal2); font-weight:500; }
+  .forces{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:9mm; }
+  .force{ border-radius:3.4mm; padding:5.5mm; background:var(--white); box-shadow:0 2mm 7mm rgba(20,18,10,.06); display:flex; flex-direction:column; }
+  .force .fn{ font-family:var(--mono); font-size:8pt; font-weight:600; color:var(--saff); letter-spacing:.08em; }
+  .force h3{ font-family:var(--disp); font-weight:700; font-size:14pt; margin:3mm 0 2.6mm; line-height:1.06; color:var(--ink); }
+  .force p{ font-family:var(--sans); font-size:10pt; line-height:1.52; color:#42424a; margin:0; }
+  .force .fs{ font-family:var(--mono); font-size:8.4pt; font-weight:500; color:var(--ink); margin-top:auto; padding-top:3.4mm; }
+  .force .fs:before{ content:'▸ '; color:var(--teal); }
+  .gapblock{ margin-top:7mm; border-radius:4mm; padding:8mm; background:var(--saff); color:var(--ink); }
+  .gapblock .gl{ font-family:var(--mono); font-size:8.4pt; letter-spacing:.2em; text-transform:uppercase; font-weight:600; color:#7a5404; }
+  .gapblock p{ font-family:var(--disp); font-weight:700; font-size:16.5pt; line-height:1.34; margin:3.5mm 0 0; letter-spacing:-.01em; }
+  .gapblock p u{ text-decoration:none; background:var(--ink); color:var(--saff); padding:.4mm 2mm; border-radius:1.6mm; }
 
-  /* solution pipeline + capability tiles */
-  .pipe-big{ margin-top:7mm; }
-  .pipe-big svg{ display:block; width:100%; height:auto; }
-  .caps6{ display:grid; grid-template-columns:repeat(3, 1fr); gap:4mm 4.5mm; margin-top:8mm; }
-  .cap{ display:flex; align-items:center; gap:4mm; padding:4mm 4.5mm; border:1px solid var(--line); border-left:3px solid var(--gold); background:var(--paper2); }
-  .cap .ic{ flex:0 0 13mm; width:13mm; height:13mm; display:flex; align-items:center; justify-content:center; }
-  .cap .ic svg{ width:100%; height:100%; display:block; }
-  .cap .lb .t{ font-family:var(--disp); font-weight:700; font-size:11pt; color:var(--navy); line-height:1.12; }
-  .cap .lb .s{ font-family:var(--mono); font-size:7.8pt; color:var(--muted); margin-top:1.6mm; letter-spacing:.04em; line-height:1.3; }
-  .stack-row{ display:flex; flex-wrap:wrap; gap:2.5mm 3mm; margin-top:7mm; align-items:center; }
-  .stack-row .lbl{ font-family:var(--mono); font-size:8pt; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-right:1mm; }
-  .stack-row .pill{ display:inline-flex; align-items:center; gap:2mm; font-family:var(--mono); font-size:8pt; color:var(--navy); background:var(--paper2); border:1px solid var(--line); padding:1.8mm 2.8mm;}
-  .solslip{ margin-top:7mm; background:var(--navy); color:#eef3f8; padding:6mm 7mm; display:flex; align-items:center; gap:6mm; }
-  .solslip .lbl{ font-family:var(--mono); font-size:8.2pt; letter-spacing:.22em; color:var(--gold); flex:0 0 auto; }
-  .solslip p{ font-family:var(--serif); font-size:11.6pt; margin:0; line-height:1.5; color:#dbe3ec; }
-  .solslip p b{ color:var(--gold2); font-weight:500; }
-  .solslip p .tl{ color:var(--teal2); font-weight:500; }
+  /* solution pipeline (bold blocks) */
+  .pipe{ display:flex; gap:2.4mm; margin-top:8mm; }
+  .pst{ flex:1; border-radius:3mm; padding:4.6mm 3.6mm; display:flex; flex-direction:column; min-height:46mm; }
+  .pst .pi{ font-family:var(--disp); font-weight:800; font-size:15pt; line-height:1; opacity:.85; }
+  .pst .ph{ font-family:var(--disp); font-weight:800; font-size:13.5pt; margin:auto 0 1.6mm; letter-spacing:-.01em; }
+  .pst .pd{ font-family:var(--mono); font-size:7.6pt; line-height:1.4; }
+  .pst.ink{ background:var(--ink); color:#fff; } .pst.ink .pd{ color:#9a9aa6; }
+  .pst.saff{ background:var(--saff); color:var(--ink); } .pst.saff .pd{ color:#7a5404; }
+  .pst.teal{ background:var(--teal); color:#08221F; } .pst.teal .pd{ color:#0a4a44; }
+  .caps{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; margin-top:6mm; }
+  .capx{ display:flex; align-items:center; gap:3mm; border-radius:2.6mm; padding:3.6mm 4mm; background:var(--paper2); }
+  .capx .cd{ width:7mm; height:7mm; border-radius:2mm; background:var(--ink); color:var(--saff); font-family:var(--disp); font-weight:800; font-size:10pt; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .capx .ct{ font-family:var(--disp); font-weight:700; font-size:10.5pt; line-height:1.1; } .capx .cs{ font-family:var(--mono); font-size:7.4pt; color:var(--muted); margin-top:1mm; }
+  .stackrow{ display:flex; flex-wrap:wrap; gap:2.4mm; margin-top:6mm; align-items:center; }
+  .stackrow .sl{ font-family:var(--mono); font-size:8pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-right:1mm; }
+  .stackrow .sp{ font-family:var(--mono); font-size:8pt; color:var(--ink); background:#fff; border:1px solid var(--line); padding:1.8mm 3mm; border-radius:5mm; }
+  .oneline{ margin-top:6mm; border-radius:3.4mm; background:var(--ink); color:#fff; padding:5.5mm 6.5mm; font-family:var(--disp); font-weight:600; font-size:13pt; line-height:1.4; letter-spacing:-.01em; }
+  .oneline .tl{ color:var(--teal2); } .oneline b{ color:var(--saff); font-weight:700; }
 
-  /* architecture */
-  .archsvg{ margin-top:5mm; }
-  .archsvg svg{ display:block; width:100%; height:auto; }
+  /* architecture blocks */
+  .arch-lbl{ font-family:var(--mono); font-size:8pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:7mm 0 3mm; }
+  .chips6{ display:grid; grid-template-columns:repeat(6,1fr); gap:2.6mm; }
+  .sigchip{ border-radius:2.6mm; background:#fff; border:1px solid var(--line); padding:3.4mm 3mm; text-align:center; }
+  .sigchip .t{ font-family:var(--disp); font-weight:700; font-size:9.4pt; color:var(--ink); line-height:1.05; }
+  .sigchip .s{ font-family:var(--mono); font-size:6.8pt; color:var(--muted); margin-top:1.2mm; }
+  .down{ display:flex; justify-content:center; align-items:center; height:7mm; }
+  .down:before{ content:''; width:3mm; height:3mm; border-right:2.4px solid var(--saff); border-bottom:2.4px solid var(--saff); transform:rotate(45deg); }
+  .runtime{ border-radius:4mm; background:var(--ink); padding:5mm; }
+  .rt-head{ display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:8.6pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--saff); padding-bottom:4mm; }
+  .rt-head span{ color:#83838f; letter-spacing:.1em; }
+  .layers{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; }
+  .lyr{ border-radius:3mm; background:#23232E; padding:4mm 3.6mm; }
+  .lyr .ln{ font-family:var(--mono); font-size:7.6pt; font-weight:600; color:var(--teal2); letter-spacing:.06em; }
+  .lyr .lt{ font-family:var(--disp); font-weight:800; font-size:12.5pt; color:#fff; margin:2.4mm 0 1mm; }
+  .lyr .ls{ font-family:var(--sans); font-size:8.4pt; color:#aeaeb8; line-height:1.32; }
+  .lyr ul{ margin:3mm 0 0; padding:0; list-style:none; }
+  .lyr li{ font-family:var(--mono); font-size:7.4pt; color:#c2c2cc; line-height:1.6; }
+  .lyr li:before{ content:'+ '; color:var(--saff); }
+  .splitdown{ display:flex; justify-content:center; gap:50mm; height:7mm; align-items:center; }
+  .splitdown div{ width:3mm; height:3mm; border-right:2.4px solid var(--saff); border-bottom:2.4px solid var(--saff); transform:rotate(45deg); }
+  .outs{ display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  .outb{ border-radius:3.4mm; padding:5mm; } .outb.saff{ background:var(--saff); color:var(--ink); } .outb.ink{ background:var(--ink); color:#fff; }
+  .outb .oh{ font-family:var(--mono); font-size:8pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase; } .outb.saff .oh{ color:#7a5404; } .outb.ink .oh{ color:var(--saff); }
+  .outb .orow{ font-family:var(--sans); font-size:9.2pt; line-height:1.5; margin-top:2.6mm; } .outb .orow b{ font-family:var(--disp); font-weight:700; }
+  .outb.ink .orow{ color:#c2c2cc; } .outb.ink .orow b{ color:#fff; }
+  .govrow{ display:flex; gap:3mm; margin-top:4mm; flex-wrap:wrap; }
+  .govp{ font-family:var(--mono); font-size:7.6pt; font-weight:500; color:var(--ink); }
+  .govp:before{ content:''; display:inline-block; width:2.2mm; height:2.2mm; border-radius:50%; background:var(--teal); margin-right:2mm; vertical-align:middle; }
 
-  /* cockpit */
-  .ui{ margin-top:6mm; border-radius:2.5mm; overflow:hidden; background:#0C1B30; border:1px solid #1f3c5c; }
-  .ui-bar{ display:flex; align-items:center; gap:3mm; background:#102A46; padding:3.6mm 5mm; border-bottom:1px solid #1f3c5c; }
-  .ui-bar .dots{ display:flex; gap:1.8mm; }
-  .ui-bar .dots i{ width:2.8mm; height:2.8mm; border-radius:50%; background:#3a597d; }
-  .ui-bar .dots i.g{ background:var(--gold); }
-  .ui-bar .ttl{ font-family:var(--mono); font-size:9pt; letter-spacing:.05em; color:#dbe3ec; }
-  .ui-bar .ttl b{ color:var(--gold); }
-  .ui-bar .rt{ margin-left:auto; font-family:var(--mono); font-size:7.6pt; color:#7e93a9; letter-spacing:.1em; }
-  .ui-tag{ font-family:var(--mono); font-size:6.6pt; letter-spacing:.1em; color:var(--gold2); border:1px solid var(--gold); border-radius:1mm; padding:.8mm 2mm; text-transform:uppercase; white-space:nowrap;}
-  .ui-body{ display:grid; grid-template-columns:1.52fr 1fr; }
-  .ui-main{ padding:6mm 6mm 6mm; }
-  .ui-side{ padding:6mm 5.5mm; background:#081628; border-left:1px solid #1f3c5c; display:flex; flex-direction:column; gap:4.5mm; }
-  .ui-acct{ display:flex; align-items:flex-start; justify-content:space-between; gap:4mm; }
-  .ui-acct .ac{ font-family:var(--mono); font-size:8.4pt; color:#9fb2c6; line-height:1.6; }
-  .ui-acct .ac b{ color:#fff; font-size:11.5pt; font-family:var(--disp); font-weight:700; display:block; margin-bottom:1.5mm; }
-  .ui-badge{ flex:0 0 auto; text-align:center; border:1.5px solid var(--teal2); border-radius:2mm; padding:2.8mm 5mm; background:#0c2a2a; }
-  .ui-badge .sc{ font-family:var(--disp); font-weight:800; font-size:20pt; color:#fff; line-height:1; }
-  .ui-badge .sc s{ color:#9fb2c6; font-size:10pt; text-decoration:none; }
-  .ui-badge .lv{ font-family:var(--mono); font-size:7.2pt; letter-spacing:.14em; color:var(--teal2); margin-top:1.6mm; font-weight:600; }
-  .ui-h{ font-family:var(--mono); font-size:7.8pt; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:5.5mm 0 3.2mm; }
-  .ui-reason{ margin-bottom:3.2mm; }
-  .ui-reason .rl{ display:flex; justify-content:space-between; gap:3mm; font-family:var(--mono); font-size:8.2pt; color:#dbe3ec; margin-bottom:1.5mm; }
-  .ui-reason .rl .v{ color:var(--gold); font-weight:600; }
-  .ui-reason .rb{ height:2.4mm; background:#13314f; border-radius:1.2mm; overflow:hidden; }
-  .ui-reason .rb i{ display:block; height:100%; background:var(--gold); border-radius:1.2mm; }
-  .ui-msg{ background:#0F2138; border:1px solid #1f3c5c; border-radius:2mm; padding:4mm 4.4mm; margin-top:1mm; }
-  .ui-msg .mh{ font-family:var(--mono); font-size:7pt; letter-spacing:.1em; text-transform:uppercase; color:var(--teal2); margin-bottom:2mm; }
-  .ui-msg .mb{ font-family:var(--indic); font-size:9.4pt; line-height:1.5; color:#eaf0f6; }
-  .ui-langs{ display:flex; gap:1.6mm; margin-top:3mm; }
-  .ui-langs span{ font-family:var(--mono); font-size:7pt; color:#9fb2c6; border:1px solid #2c4a6a; border-radius:1mm; padding:1mm 2.2mm; }
-  .ui-langs span.on{ color:#0A1A30; background:var(--gold2); border-color:var(--gold2); font-weight:600; }
-  .ui-rec{ border:1px solid #1f3c5c; border-radius:2mm; padding:4.6mm; background:#0F2138; }
-  .ui-rec .t{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.12em; color:var(--gold); text-transform:uppercase; }
-  .ui-rec .a{ font-family:var(--disp); font-weight:800; font-size:13pt; color:#fff; margin:2.6mm 0 1.8mm; }
-  .ui-rec .s{ font-family:var(--mono); font-size:7.6pt; color:#9fb2c6; line-height:1.5; }
-  .ui-btns{ display:flex; gap:2.6mm; margin-top:4mm; }
-  .ui-btn{ font-family:var(--disp); font-weight:700; font-size:8.6pt; padding:2.6mm 4mm; border-radius:1.4mm; }
-  .ui-btn.pri{ background:var(--gold); color:#0A1A30; }
-  .ui-btn.sec{ color:#cdd7e2; border:1px solid #3a597d; }
-  .ui-gen{ border:1px solid #1f3c5c; border-radius:2mm; padding:4.6mm; background:#081628; flex:1; display:flex; flex-direction:column; }
-  .ui-gen .t{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.12em; color:var(--gold); text-transform:uppercase; }
-  .govchain{ display:flex; flex-wrap:wrap; align-items:center; gap:1.6mm; margin:3mm 0 0; }
-  .govchain span{ font-family:var(--mono); font-size:7pt; background:#102A46; border:1px solid #1f3c5c; color:#dbe3ec; padding:1.3mm 2.2mm; border-radius:1mm; }
-  .govchain i{ color:var(--gold); font-style:normal; font-size:8pt; }
-  .govnote{ font-family:var(--serif); font-size:8.4pt; line-height:1.46; color:#c8d3df; margin-top:3mm; }
-  .ui-spark svg{ display:block; width:100%; height:auto; }
-  .ui-foot{ display:flex; justify-content:space-between; gap:4mm; background:#102A46; border-top:1px solid #1f3c5c; padding:3.2mm 5mm; font-family:var(--mono); font-size:7.2pt; letter-spacing:.04em; color:#7e93a9; }
-  .ui-foot b{ color:#9fb2c6; }
-  .ui-legend{ display:flex; gap:7mm; margin-top:3mm; font-family:var(--mono); font-size:7.2pt; color:#9fb2c6;}
-  .ui-legend span{ display:inline-flex; align-items:center;}
-  .ui-legend i{ display:inline-block; width:7px; height:7px; margin-right:2.2mm;}
-  .ui-legend i.tab{ background:var(--green);} .ui-legend i.plat{ background:transparent; border:1.3px solid var(--gold2);}
-  .src{ display:inline-block; width:6px; height:6px; margin-right:5px; vertical-align:middle;}
-  .src.tab{ background:var(--green);} .src.plat{ background:transparent; border:1.3px solid var(--gold2);}
+  /* product (light app UI) */
+  .app{ margin-top:6mm; border-radius:4mm; overflow:hidden; background:#fff; box-shadow:0 3mm 12mm rgba(20,18,10,.10); border:1px solid var(--line); }
+  .app-bar{ display:flex; align-items:center; gap:3mm; padding:3.6mm 5mm; border-bottom:1px solid var(--line); }
+  .app-bar .dot{ width:6mm; height:6mm; border-radius:2mm; background:var(--ink); color:var(--saff); font-family:var(--disp); font-weight:800; font-size:9pt; display:flex; align-items:center; justify-content:center; }
+  .app-bar .t{ font-family:var(--disp); font-weight:700; font-size:11pt; } .app-bar .t span{ color:var(--muted); font-family:var(--sans); font-weight:500; font-size:9pt; }
+  .app-bar .tag{ font-family:var(--mono); font-size:6.8pt; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); background:var(--saff2); padding:1.2mm 2.4mm; border-radius:1.4mm; }
+  .app-bar .rt{ margin-left:auto; font-family:var(--mono); font-size:7.4pt; letter-spacing:.08em; color:var(--muted); }
+  .app-body{ display:grid; grid-template-columns:1.5fr 1fr; }
+  .app-main{ padding:5.5mm 5.5mm; } .app-side{ padding:5.5mm; background:var(--paper2); display:flex; flex-direction:column; gap:4mm; }
+  .acct{ display:flex; justify-content:space-between; align-items:flex-start; gap:4mm; }
+  .acct .nm{ font-family:var(--disp); font-weight:700; font-size:12pt; } .acct .mt{ font-family:var(--mono); font-size:7.8pt; color:var(--muted); margin-top:1mm; line-height:1.5; }
+  .score{ flex:0 0 auto; text-align:center; background:var(--teal); border-radius:2.6mm; padding:2.6mm 4.4mm; color:#08221F; }
+  .score .n{ font-family:var(--disp); font-weight:800; font-size:18pt; line-height:1; } .score .l{ font-family:var(--mono); font-size:6.8pt; letter-spacing:.1em; margin-top:1mm; }
+  .sub{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.12em; text-transform:uppercase; color:var(--saff); font-weight:600; margin:5mm 0 3mm; }
+  .rsn{ margin-bottom:2.8mm; } .rsn .rl{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:8pt; color:#3a3a42; margin-bottom:1.2mm; } .rsn .rl .v{ color:var(--teal); font-weight:600; }
+  .rsn .bar{ height:2.6mm; background:var(--paper2); border-radius:1.4mm; overflow:hidden; } .rsn .bar i{ display:block; height:100%; background:var(--teal); border-radius:1.4mm; }
+  .msg{ background:var(--paper); border:1px solid var(--line); border-radius:2.6mm; padding:3.8mm 4mm; margin-top:1mm; }
+  .msg .mh{ font-family:var(--mono); font-size:7pt; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:2mm; font-weight:600; }
+  .msg .mb{ font-family:var(--indic); font-size:9.6pt; line-height:1.5; color:var(--ink); }
+  .langs{ display:flex; gap:1.6mm; margin-top:3mm; } .langs span{ font-family:var(--mono); font-size:7pt; color:var(--muted); border:1px solid var(--line); border-radius:1.4mm; padding:1mm 2.2mm; } .langs span.on{ background:var(--saff); color:var(--ink); border-color:var(--saff); font-weight:600; }
+  .rec{ background:var(--saff); border-radius:3mm; padding:4.6mm; } .rec .t{ font-family:var(--mono); font-size:7.4pt; letter-spacing:.1em; text-transform:uppercase; color:#7a5404; font-weight:600; } .rec .a{ font-family:var(--disp); font-weight:800; font-size:14pt; margin:2.4mm 0 1.6mm; color:var(--ink); } .rec .s{ font-family:var(--sans); font-size:8.6pt; color:#5a3f06; line-height:1.45; }
+  .rbtns{ display:flex; gap:2.4mm; margin-top:3.6mm; } .rbtn{ font-family:var(--disp); font-weight:700; font-size:8.6pt; padding:2.4mm 4mm; border-radius:2mm; } .rbtn.pri{ background:var(--ink); color:#fff; } .rbtn.sec{ color:var(--ink); border:1.4px solid var(--ink); }
+  .gov{ background:#fff; border:1px solid var(--line); border-radius:3mm; padding:4.4mm; flex:1; } .gov .t{ font-family:var(--mono); font-size:7.4pt; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); font-weight:600; }
+  .chain{ display:flex; flex-wrap:wrap; align-items:center; gap:1.6mm; margin-top:3mm; } .chain span{ font-family:var(--mono); font-size:7pt; background:var(--paper2); color:var(--ink); padding:1.2mm 2.2mm; border-radius:1.4mm; } .chain i{ color:var(--saff); font-style:normal; }
+  .govn{ font-family:var(--sans); font-size:8.4pt; line-height:1.46; color:#46464e; margin-top:3mm; }
+  .app-foot{ display:flex; justify-content:space-between; padding:3.2mm 5mm; background:var(--paper2); font-family:var(--mono); font-size:7.2pt; letter-spacing:.04em; color:var(--muted); } .app-foot b{ color:var(--ink); }
 
-  /* data page */
-  .dwrap{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; margin-top:6mm; }
-  .dcard{ background:var(--navy); color:#eef3f8; border-radius:2mm; padding:5mm 5.5mm; }
-  .dcard .dh{ font-family:var(--mono); font-size:8pt; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
-  .dtop{ display:flex; align-items:center; gap:5mm; margin-top:4.5mm; }
-  .dstats{ display:flex; flex-direction:column; gap:3mm; }
-  .dstats .ds .n{ font-family:var(--disp); font-weight:800; font-size:15pt; color:var(--gold2); line-height:1; }
-  .dstats .ds .l{ font-family:var(--mono); font-size:7pt; letter-spacing:.04em; text-transform:uppercase; color:#8aa0b8; margin-top:1.3mm; }
-  .dfoot{ font-family:var(--serif); font-size:8.6pt; line-height:1.45; color:#aebccb; margin-top:4.5mm; }
-  .dfoot b{ color:#fff; font-weight:500; }
-  .jpbox{ border:1px solid var(--line); border-top:3px solid var(--gold); background:var(--paper2); padding:4mm 4.6mm; }
-  .jpbox .jh{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:3mm;}
-  .fd .row{ margin-bottom:3mm;}
-  .fd .lab{ display:flex; justify-content:space-between; align-items:baseline; font-family:var(--mono); font-size:8pt; color:#3a352a; margin-bottom:1.3mm;}
-  .fd .lab b{ font-family:var(--disp); font-weight:700; color:var(--navy); }
-  .fd .track{ height:5mm; background:var(--paper); border:1px solid var(--line);}
-  .fd .fill{ height:100%;}
-  .modelrow{ font-family:var(--mono); font-size:8.6pt; line-height:1.95; color:#34301f; }
-  .modelrow b{ color:var(--navy); }
-  .modelrow .g{ color:var(--gold); }
-  .dnote{ margin-top:6mm; background:var(--navy); color:#eef3f8; padding:5mm 6mm; font-family:var(--serif); font-size:10.5pt; line-height:1.5; }
-  .dnote b{ color:var(--gold2); font-weight:500; }
+  /* data */
+  .dgrid{ display:grid; grid-template-columns:1fr 1fr; gap:4mm; margin-top:8mm; }
+  .donutcard{ border-radius:3.6mm; background:var(--ink); color:#fff; padding:5.5mm; } .donutcard .dh{ font-family:var(--mono); font-size:8pt; letter-spacing:.14em; text-transform:uppercase; color:var(--saff); font-weight:600; }
+  .dtop{ display:flex; align-items:center; gap:5mm; margin-top:4mm; } .dlist .di{ margin-bottom:3.4mm; } .dlist .di .n{ font-family:var(--disp); font-weight:800; font-size:13pt; color:var(--saff2); } .dlist .di .n small{ font-family:var(--mono); font-size:7.6pt; color:#cfcfd8; font-weight:500; } .dlist .di .l{ font-family:var(--mono); font-size:7pt; text-transform:uppercase; letter-spacing:.04em; color:#9a9aa6; margin-top:.8mm; }
+  .dfoot{ font-family:var(--sans); font-size:8.6pt; line-height:1.45; color:#aeaeb8; margin-top:4mm; } .dfoot b{ color:#fff; }
+  .modelcard{ border-radius:3.6mm; background:#fff; box-shadow:0 2mm 7mm rgba(20,18,10,.06); padding:5.5mm; display:flex; flex-direction:column; } .modelcard .mh{ font-family:var(--mono); font-size:8pt; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-bottom:3mm; }
+  .modelcard .mr{ font-family:var(--sans); font-size:9.4pt; line-height:1.9; color:#34343c; } .modelcard .mr b{ font-family:var(--disp); font-weight:700; color:var(--ink); } .modelcard .mr:before{ content:''; }
+  .mrow{ font-family:var(--sans); font-size:9.4pt; line-height:1.85; color:#34343c; } .mrow b{ font-family:var(--disp); font-weight:700; color:var(--ink); } .mrow .k{ color:var(--saff); font-weight:700; }
+  .mcost{ margin-top:auto; padding-top:3.4mm; border-top:1px solid var(--line); font-family:var(--sans); font-size:8.6pt; line-height:1.4; color:#46464e; } .mcost b{ font-family:var(--disp); font-weight:700; color:var(--ink); }
+  .funnel{ margin-top:4mm; border-radius:3.6mm; background:var(--paper2); padding:5.5mm; } .funnel .fh{ font-family:var(--mono); font-size:8pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:3.5mm; }
+  .frow{ margin-bottom:2.6mm; } .frow .fl{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:8pt; color:#3a3a42; margin-bottom:1.2mm; } .frow .fl b{ font-family:var(--disp); font-weight:700; color:var(--ink); }
+  .ftrack{ height:5mm; background:#fff; border-radius:1.4mm; overflow:hidden; } .ftrack i{ display:block; height:100%; border-radius:1.4mm; }
+  .dnote{ margin-top:5mm; border-radius:3.4mm; background:var(--teal); color:#08221F; padding:5mm 6mm; font-family:var(--disp); font-weight:600; font-size:11.5pt; line-height:1.42; } .dnote b{ color:var(--ink); }
 
   /* roadmap */
-  .roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:5mm; margin-top:6mm; }
-  .rst{ position:relative; border:1px solid var(--line); border-top:3px solid var(--gold); background:var(--paper2); padding:4mm 4mm 4.4mm; display:flex; flex-direction:column; }
-  .rst .rno{ display:inline-flex; align-items:center; justify-content:center; width:6.6mm; height:6.6mm; border-radius:50%; background:var(--gold); color:#fff; font-family:var(--disp); font-weight:800; font-size:9pt; line-height:1; }
-  .rst:not(:last-child):after{ content:''; position:absolute; right:-3.8mm; top:8mm; border-left:6px solid var(--gold); border-top:4.5px solid transparent; border-bottom:4.5px solid transparent; }
-  .rst .rwk{ font-family:var(--mono); font-size:7pt; letter-spacing:.04em; color:var(--muted); text-transform:uppercase; margin-top:3mm; }
-  .rst h4{ font-family:var(--disp); font-weight:700; font-size:11pt; color:var(--navy); margin:1.5mm 0 2mm; line-height:1.12; }
-  .rst p{ font-family:var(--serif); font-size:8.8pt; line-height:1.42; color:#34301f; margin:0 0 3.4mm; }
-  .rst .gate{ margin-top:auto; font-family:var(--mono); font-size:6.9pt; color:var(--navy); border-left:2px solid var(--gold); padding-left:2.4mm; line-height:1.4; }
-  .rst .gate b{ color:var(--gold); font-weight:600; }
-  .principles{ margin-top:7mm; display:flex; gap:2.5mm; flex-wrap:wrap; }
-  .principles .pc{ font-family:var(--mono); font-size:8pt; letter-spacing:.03em; color:var(--navy); background:var(--paper2); border:1px solid var(--line); border-left:2px solid var(--teal); padding:2.4mm 3mm;}
-  .tltrack{ display:flex; gap:0; margin-top:8mm; }
-  .tl{ flex:1; border-top:2px solid var(--navy); padding:3.5mm 4mm 0 0; position:relative;}
-  .tl:before{ content:''; position:absolute; top:-4.5px; left:0; width:7px; height:7px; border-radius:50%; background:var(--gold);}
-  .tl .dt{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.06em; color:var(--gold); font-weight:600;}
-  .tl h5{ font-family:var(--disp); font-weight:700; font-size:9.6pt; color:var(--navy); margin:1.5mm 0; }
+  .road{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin-top:8mm; }
+  .rstep{ border-radius:3.4mm; padding:5mm; display:flex; flex-direction:column; min-height:52mm; }
+  .rstep.s1{ background:var(--ink); color:#fff; } .rstep.s2{ background:var(--saff); color:var(--ink); } .rstep.s3{ background:var(--teal); color:#08221F; } .rstep.s4{ background:var(--paper2); color:var(--ink); }
+  .rstep .rn{ font-family:var(--disp); font-weight:800; font-size:24pt; line-height:.9; } .rstep .rw{ font-family:var(--mono); font-size:7.4pt; letter-spacing:.08em; text-transform:uppercase; margin-top:2mm; opacity:.8; }
+  .rstep h4{ font-family:var(--disp); font-weight:800; font-size:12pt; margin:3mm 0 2mm; } .rstep p{ font-family:var(--sans); font-size:8.8pt; line-height:1.42; margin:0 0 3mm; }
+  .rstep .g{ margin-top:auto; font-family:var(--mono); font-size:7pt; line-height:1.4; padding-top:2.6mm; border-top:1px solid rgba(0,0,0,.18); } .rstep.s1 .g{ border-color:rgba(255,255,255,.18); }
+  .princ{ display:flex; flex-wrap:wrap; gap:2.4mm; margin-top:6mm; } .princ .pc{ font-family:var(--mono); font-size:8pt; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:5mm; padding:2.2mm 3.4mm; }
+  .timeline{ display:flex; gap:2.6mm; margin-top:6mm; } .tcell{ flex:1; border-radius:2.6mm; background:var(--paper2); padding:3.6mm 4mm; } .tcell .dt{ font-family:var(--mono); font-size:7.6pt; font-weight:600; color:var(--saff); } .tcell h5{ font-family:var(--disp); font-weight:700; font-size:9.6pt; margin:1.6mm 0 0; }
 
   /* impact */
-  .metrics{ display:flex; gap:3mm; margin-top:7mm; }
-  .metrics .mx{ flex:1; border:1px solid var(--line); border-left:3px solid var(--gold); padding:4mm 4.5mm; background:var(--paper2);}
-  .metrics .mx .n{ font-family:var(--disp); font-weight:800; font-size:19pt; color:var(--navy); line-height:1;}
-  .metrics .mx .l{ font-family:var(--mono); font-size:7.4pt; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-top:2mm; line-height:1.35;}
-  .levers{ display:grid; grid-template-columns:1fr 1fr; gap:4mm 7mm; margin-top:8mm; }
-  .lev{ display:flex; gap:3mm; }
-  .lev .k{ font-family:var(--mono); font-weight:600; font-size:10pt; color:var(--gold); }
-  .lev .x{ font-family:var(--serif); font-size:10pt; line-height:1.45; color:#34301f; }
-  .lev .x b{ font-family:var(--disp); font-weight:700; color:var(--navy); }
-  .rupee{ margin-top:8mm; border:1px solid var(--line); border-top:3px solid var(--gold); background:var(--paper2); padding:4.6mm 5.2mm; }
-  .rupee .rlbl{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
-  .rupee .rcap{ font-family:var(--mono); font-size:7.6pt; color:#3a352a; margin:3.4mm 0 1.6mm; }
-  .rbar{ display:flex; height:10mm; border:1px solid var(--line); overflow:hidden; font-family:var(--disp); font-weight:700; }
-  .rbar .rseg{ display:flex; align-items:center; padding:0 2.4mm; color:#fff; font-size:8.4pt; white-space:nowrap; overflow:hidden; }
-  .rbar .rseg.green{ background:var(--green); } .rbar .rseg.teal{ background:var(--teal); } .rbar .rseg.grey{ background:#9c937f; }
-  .rassume{ font-family:var(--mono); font-size:7.4pt; line-height:1.4; color:var(--muted); margin-top:2.4mm; }
-  .commercial{ margin-top:8mm; background:var(--navy); color:#eef3f8; padding:5mm 6mm; font-family:var(--serif); font-size:10.6pt; line-height:1.5; }
-  .commercial b{ color:var(--gold2); font-weight:500; } .commercial .tl{ color:var(--teal2); font-weight:500; }
+  .mblocks{ display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:3mm; margin-top:8mm; }
+  .mblk{ border-radius:3.4mm; padding:5mm; } .mblk.a{ background:var(--saff); color:var(--ink); } .mblk.b{ background:var(--teal); color:#08221F; } .mblk.c{ background:var(--ink); color:#fff; } .mblk.d{ background:var(--paper2); color:var(--ink); }
+  .mblk .n{ font-family:var(--disp); font-weight:800; font-size:23pt; line-height:1; } .mblk .l{ font-family:var(--mono); font-size:7.4pt; letter-spacing:.04em; text-transform:uppercase; margin-top:2.6mm; line-height:1.35; opacity:.85; }
+  .levers{ display:grid; grid-template-columns:1fr 1fr; gap:3mm 6mm; margin-top:7mm; } .lev{ display:flex; gap:3mm; } .lev .k{ font-family:var(--disp); font-weight:800; font-size:11pt; color:var(--saff); } .lev .x{ font-family:var(--sans); font-size:9.6pt; line-height:1.42; color:#34343c; } .lev .x b{ font-family:var(--disp); font-weight:700; color:var(--ink); }
+  .rupee{ margin-top:7mm; border-radius:3.6mm; background:var(--paper2); padding:5mm 5.5mm; } .rupee .rl{ font-family:var(--mono); font-size:7.6pt; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); } .rupee .rl b{ color:var(--ink); }
+  .rupee .rc{ font-family:var(--mono); font-size:7.6pt; color:#46464e; margin:3mm 0 2mm; }
+  .rbar{ display:flex; height:11mm; border-radius:2mm; overflow:hidden; font-family:var(--disp); font-weight:700; } .rbar .seg{ display:flex; align-items:center; padding:0 3mm; font-size:8.6pt; white-space:nowrap; overflow:hidden; } .rbar .seg.g{ background:#cfcabb; color:var(--ink); } .rbar .seg.t{ background:var(--teal); color:#08221F; } .rbar .seg.s{ background:var(--saff); color:var(--ink); }
+  .rassume{ font-family:var(--mono); font-size:7.2pt; line-height:1.4; color:var(--muted); margin-top:2.4mm; }
+  .commercial{ margin-top:7mm; border-radius:3.6mm; background:var(--ink); color:#fff; padding:5.5mm 6.5mm; font-family:var(--disp); font-weight:600; font-size:12.5pt; line-height:1.42; letter-spacing:-.01em; } .commercial b{ color:var(--saff); } .commercial .tl{ color:var(--teal2); }
 
   /* competitive */
-  .cmp{ margin-top:6mm; }
-  .cmp table{ width:100%; border-collapse:collapse; }
-  .cmp th, .cmp td{ text-align:center; padding:3.4mm 1.5mm; border-bottom:1px solid var(--line); }
-  .cmp th{ font-family:var(--mono); font-size:7.2pt; letter-spacing:.02em; color:var(--muted); font-weight:500; line-height:1.25; text-transform:uppercase; vertical-align:bottom; }
-  .cmp th.rowh, .cmp td.rowh{ text-align:left; }
-  .cmp td.rowh{ font-family:var(--disp); font-weight:700; font-size:9.6pt; color:var(--navy); line-height:1.1; }
-  .cmp td.rowh s{ display:block; font-family:var(--mono); font-weight:400; font-size:6.8pt; color:var(--muted); text-decoration:none; margin-top:1mm; }
-  .cmp tr.me td{ background:var(--navy); }
-  .cmp tr.me td.rowh{ color:#fff; } .cmp tr.me td.rowh s{ color:var(--gold2); }
-  .cmp .mk{ display:inline-block; width:13px; height:13px; border-radius:50%; vertical-align:middle; }
-  .cmp .mk.y{ background:var(--gold); } .cmp .mk.p{ background:transparent; border:2px solid var(--gold); } .cmp .mk.n{ background:transparent; border:1.5px solid var(--line); }
-  .cmp tr.me .mk.y{ background:var(--gold2); }
-  .cmp-legend{ display:flex; gap:5mm; margin-top:3mm; font-family:var(--mono); font-size:7pt; color:var(--muted); }
-  .cmp-legend span{ display:inline-flex; align-items:center; gap:1.8mm; } .cmp-legend .mk{ width:10px; height:10px; border-radius:50%; }
-  .cmp-legend .mk.y{ background:var(--gold);} .cmp-legend .mk.p{ background:transparent;border:2px solid var(--gold);} .cmp-legend .mk.n{ background:transparent;border:1.5px solid var(--line);}
-  .cmp-note{ font-family:var(--serif); font-size:10pt; line-height:1.5; color:#34301f; margin-top:6mm; }
-  .cmp-note b{ font-family:var(--disp); font-weight:700; color:var(--navy); }
+  .cmp{ margin-top:8mm; border-radius:3.6mm; overflow:hidden; border:1px solid var(--line); }
+  .cmp table{ width:100%; border-collapse:collapse; background:#fff; }
+  .cmp th,.cmp td{ padding:3.6mm 1.6mm; text-align:center; border-bottom:1px solid var(--line); }
+  .cmp th{ font-family:var(--mono); font-size:7pt; letter-spacing:.02em; text-transform:uppercase; color:var(--muted); font-weight:500; line-height:1.25; vertical-align:bottom; }
+  .cmp th.rh,.cmp td.rh{ text-align:left; } .cmp td.rh{ font-family:var(--disp); font-weight:700; font-size:9.6pt; color:var(--ink); } .cmp td.rh s{ display:block; font-family:var(--mono); font-weight:400; font-size:6.8pt; color:var(--muted); text-decoration:none; margin-top:.8mm; }
+  .cmp tr.me td{ background:var(--saff); border-bottom-color:#e8980f; } .cmp tr.me td.rh{ color:var(--ink); } .cmp tr.me td.rh s{ color:#7a5404; }
+  .mk{ display:inline-block; width:13px; height:13px; border-radius:50%; } .mk.y{ background:var(--teal); } .mk.p{ background:transparent; border:2px solid var(--teal); } .mk.n{ background:transparent; border:1.5px solid #cfcabb; }
+  .cmp tr.me .mk.y{ background:var(--ink); } .cmp tr.me .mk.p{ border-color:var(--ink); } .cmp tr.me .mk.n{ border-color:#b6850c; }
+  .cmpleg{ display:flex; gap:5mm; margin-top:3.4mm; font-family:var(--mono); font-size:7.2pt; color:var(--muted); } .cmpleg span{ display:inline-flex; align-items:center; gap:1.8mm; } .cmpleg .mk{ width:10px; height:10px; }
+  .cmpnote{ font-family:var(--sans); font-size:10pt; line-height:1.5; color:#34343c; margin-top:6mm; } .cmpnote b{ font-family:var(--disp); font-weight:700; color:var(--ink); }
 
-  /* trust grid */
-  .trust{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:6mm; }
-  .tcell{ border:1px solid var(--line); border-left:3px solid var(--teal); background:var(--paper2); padding:4.4mm 4.6mm; }
-  .tcell .th{ font-family:var(--disp); font-weight:700; font-size:11pt; color:var(--navy); }
-  .tcell .tp{ font-family:var(--serif); font-size:9pt; line-height:1.45; color:#34301f; margin-top:2mm; }
-  .closing{ margin-top:8mm; background:var(--gold); color:var(--navy); padding:9mm; }
-  .closing p{ font-family:var(--disp); font-weight:700; font-size:15pt; line-height:1.32; margin:0; letter-spacing:-.01em; }
-  .endstamp{ display:flex; justify-content:center; margin-top:7mm; }
-  .endstamp .stamp{ border:1.5px solid var(--gold); color:var(--navy); font-family:var(--disp); font-weight:800; font-size:10.5pt; letter-spacing:.28em; text-transform:uppercase; padding:3mm 8mm; border-radius:2mm; display:flex; align-items:center; gap:3.5mm; }
-  .endstamp .dot{ width:5px; height:5px; background:var(--gold); border-radius:50%; display:inline-block; }
-  .refs{ margin-top:7mm; }
-  .refs .refrow{ font-family:var(--mono); font-size:7.2pt; line-height:1.5; color:var(--muted); margin-bottom:1.6mm; }
-  .refs .rk{ color:var(--gold); font-weight:600; letter-spacing:.08em; text-transform:uppercase; margin-right:2.4mm; }
-  .refs .refrow b{ color:var(--navy); font-weight:600; }
-
-  .footer-tag{ position:absolute; bottom:9mm; left:16mm; right:16mm; display:flex; justify-content:space-between; font-family:var(--mono); font-size:7pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); border-top:1px solid var(--line); padding-top:3mm;}
-  .footer-tag b{ color:var(--gold);}
+  /* trust + close */
+  .tgrid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; margin-top:8mm; }
+  .tc{ border-radius:3mm; background:#fff; box-shadow:0 2mm 6mm rgba(20,18,10,.05); padding:4.6mm; } .tc .th{ font-family:var(--disp); font-weight:800; font-size:11.5pt; } .tc .th:before{ content:''; display:inline-block; width:3mm; height:3mm; border-radius:1mm; background:var(--teal); margin-right:2.4mm; vertical-align:middle; } .tc .tp{ font-family:var(--sans); font-size:9pt; line-height:1.46; color:#42424a; margin-top:2.4mm; }
+  .close{ margin-top:7mm; border-radius:4mm; background:var(--ink); color:#fff; padding:9mm; } .close p{ font-family:var(--disp); font-weight:800; font-size:18pt; line-height:1.26; margin:0; letter-spacing:-.015em; } .close p .em{ color:var(--saff); } .close p .tl{ color:var(--teal2); }
+  .refs{ margin-top:6mm; } .refs .rr{ font-family:var(--mono); font-size:7.4pt; line-height:1.5; color:var(--muted); margin-bottom:1.6mm; } .refs .rk{ color:var(--saff); font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-right:2.4mm; } .refs .rr b{ color:var(--ink); }
+  .stamp{ display:inline-flex; align-items:center; gap:3mm; margin-top:6mm; background:var(--saff); color:var(--ink); font-family:var(--disp); font-weight:800; font-size:11pt; letter-spacing:.18em; text-transform:uppercase; padding:3mm 7mm; border-radius:6mm; } .stamp .sd{ width:4px; height:4px; border-radius:50%; background:var(--ink); }
 </style>
 </head>
 <body>
 
-<!-- ============ PAGE 1 — COVER ============ -->
+<!-- ===== PAGE 1 — COVER ===== -->
 <section class="page cover">
-  <svg class="radar" viewBox="0 0 400 400" fill="none">
-    <g stroke="#E7A23A" stroke-width="1">
-      <circle cx="200" cy="200" r="60" stroke-opacity=".30"/><circle cx="200" cy="200" r="110" stroke-opacity=".22"/>
-      <circle cx="200" cy="200" r="160" stroke-opacity=".15"/><circle cx="200" cy="200" r="210" stroke-opacity=".10"/>
-    </g>
-    <g stroke="#37D6C3" stroke-width="1" stroke-opacity=".30">
-      <line x1="200" y1="200" x2="60" y2="120"/><line x1="200" y1="200" x2="320" y2="110"/>
-      <line x1="200" y1="200" x2="330" y2="300"/><line x1="200" y1="200" x2="90" y2="320"/>
-      <line x1="60" y1="120" x2="320" y2="110"/><line x1="330" y1="300" x2="90" y2="320"/>
-    </g>
-    <g fill="#37D6C3" fill-opacity=".45">
-      <circle cx="60" cy="120" r="4"/><circle cx="320" cy="110" r="4"/><circle cx="330" cy="300" r="4"/><circle cx="90" cy="320" r="4"/>
-    </g>
-    <circle cx="200" cy="200" r="7" fill="#F6B84B" fill-opacity=".7"/>
-    <circle cx="200" cy="200" r="15" fill="none" stroke="#F6B84B" stroke-width="1.5" stroke-opacity=".5"/>
-  </svg>
+  <div class="blob" style="width:120mm;height:120mm;background:#FFAA15;opacity:.16;right:-40mm;top:-50mm;"></div>
+  <div class="blob" style="width:110mm;height:110mm;background:#0FB6A2;opacity:.13;left:-46mm;bottom:-46mm;"></div>
   <div class="pad">
     <div class="cover-top">
-      <span>State Bank of India &times; Global Fintech Fest &middot; Hackathon 2026</span>
-      <span class="badge">Problem Statement 03 &middot; Digital Engagement</span>
+      <span class="l">State Bank of India &times; Global Fintech Fest 2026</span>
+      <span class="pill">PS 03 — Digital Engagement</span>
     </div>
-    <div class="wordmark">
-      <div class="teamname"><span class="lead">Team</span> SAS CODIES</div>
-      <div class="mk">SBI <b>SAARTHI</b></div>
-      <div class="tagline">Your bank, one step ahead.</div>
-      <div class="manifesto">Today a bank waits for the customer to open the app, blasts the same offer to everyone, and then leaves them to do the work. For SBI's <b>50 crore customers</b>, a human relationship manager exists only for the wealthiest 1%. <b>Saarthi changes engagement from broadcast to a crew of autonomous AI agents</b> that sense each customer's money-moment, reach them in their <span class="tl">own language</span>, and <b>complete the action for them</b> &mdash; book the FD, shift the EMI, revive the account &mdash; every step consent-gated, guardrail-checked and audit-logged.</div>
-    </div>
-    <div class="cover-stat">
-      <div class="s"><div class="n">50 crore</div><div class="l">customers SBI serves</div></div>
-      <div class="s"><div class="n">~1%</div><div class="l">get a human relationship manager</div></div>
-      <div class="s"><div class="n">22</div><div class="l">languages Saarthi speaks, voice &amp; text</div></div>
+    <div class="team-eyebrow">Team SAS CODIES</div>
+    <div class="mk">SBI <b>Saarthi</b></div>
+    <div class="tag-block">Your bank, one step ahead.</div>
+    <div class="manifesto">A bank waits for you to open the app, blasts the same offer to everyone, then leaves you to do the work. For SBI's <b>50 crore customers</b>, a relationship manager exists only for the wealthiest 1%. <b>Saarthi turns engagement into a crew of autonomous AI agents</b> that sense each customer's money-moment, reach them in their <span class="tl">own language</span>, and <b>complete the action for them</b> — book the FD, shift the EMI, revive the account — every step consent-gated, guardrail-checked and audit-logged.</div>
+    <div class="cstats">
+      <div class="cstat s1"><div class="n">50 crore</div><div class="l">customers SBI serves</div></div>
+      <div class="cstat s2"><div class="n">~1%</div><div class="l">get a human relationship manager</div></div>
+      <div class="cstat s3"><div class="n">22</div><div class="l">languages Saarthi speaks · voice &amp; text</div></div>
     </div>
     <div class="cover-foot">
-      <div class="team"><b>SAS CODIES</b> &nbsp; Saud Satopay &middot; Aryan Walunj &middot; Sahil Addagatla</div>
-      <div class="ps">Agentic AI for proactive, vernacular, action-closing customer engagement</div>
+      <div class="team"><b>SAS CODIES</b> &nbsp; Saud Satopay · Aryan Walunj · Sahil Addagatla</div>
+      <div class="ps">Agentic AI for proactive, vernacular, action-closing engagement</div>
     </div>
   </div>
 </section>
 
-<!-- ============ PAGE 2 — THE PROBLEM ============ -->
+<!-- ===== PAGE 2 — PROBLEM ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">01 / THE PROBLEM</div>
-    <h1 class="sec">Engagement that waits,<br>guesses, and <span class="em">offloads the work</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <p class="lead" style="margin-top:5mm; max-width:168mm;">Digital engagement today is <b>reactive</b> (it waits for you to open YONO), <b>generic</b> (one offer blasted to everyone) and <b>unactionable</b> (it tells you something, then asks you to do it). At SBI's scale, that is hundreds of crores of relationships reduced to a notification nobody opens.</p>
-    <div class="cards">
-      <div class="card"><div class="n">Reactive</div><div class="l">most customers never go beyond a balance check &middot; the bank never reaches out first</div></div>
-      <div class="card"><div class="n">Generic</div><div class="l">broadcast SMS &amp; push &rarr; notification blindness, low CTR, opt-outs</div></div>
-      <div class="card"><div class="n">Unactionable</div><div class="l">advice without execution &middot; the customer abandons before completing</div></div>
+    <div class="ix"><div class="sq coral">01</div><div class="kick">The Problem</div></div>
+    <h1 class="big">Engagement that waits,<br>guesses, and <span class="em">offloads the work</span>.</h1>
+    <p class="lead" style="margin-top:6mm;max-width:170mm;">Digital engagement today is <b>reactive</b>, <b>generic</b> and <b>unactionable</b>. At SBI's scale, that's hundreds of crores of relationships reduced to a notification nobody opens.</p>
+    <div class="trio">
+      <div class="pcard b-ink"><div class="pn" style="color:var(--saff)">Reactive</div><div class="pp" style="color:#c2c2cc">It waits for the customer to open YONO. Most never go beyond a balance check — the bank never reaches out first.</div></div>
+      <div class="pcard b-tint"><div class="pn">Generic</div><div class="pp" style="color:#46464e">Broadcast SMS &amp; push to everyone — notification blindness, collapsing CTR, opt-outs.</div></div>
+      <div class="pcard b-teal"><div class="pn">Unactionable</div><div class="pp" style="color:#0a4a44">It gives advice, then asks the customer to do the work. They abandon before completing.</div></div>
     </div>
-    <div class="needle-wrap">
-      <svg width="130" height="210" viewBox="0 0 200 324">
-        <defs><pattern id="dots" width="25" height="24.857" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.43" r="4.2" fill="#1d3a5f"/></pattern></defs>
-        <rect width="200" height="324" fill="url(#dots)"/>
-        <circle cx="100" cy="50" r="7" fill="#F6B84B"/>
-        <circle cx="100" cy="50" r="13" fill="none" stroke="#F6B84B" stroke-width="1.4" stroke-opacity=".6"/>
-      </svg>
-      <div class="t">
-        <div class="big">1 advisor for <b>~1 in 100</b></div>
-        <p>A relationship manager exists for roughly <em>the top 1%</em>. The other <em>49.5 crore</em> customers get the same broadcast SMS. Engagement isn't a data problem &mdash; it's an <b style="color:#fff;font-weight:500">attention-and-action problem</b>: the right nudge, at the right moment, finished for them.</p>
-      </div>
-    </div>
+    <div class="bandstat"><div class="x">A relationship manager exists for <b>~1%</b> of customers. The other <i>49.5 crore</i> get the same broadcast SMS — engagement is an <b>attention-and-action</b> problem, not a data one.</div></div>
     <div class="anat">
-      <div class="lbl">Anatomy of a lost moment</div>
-      <div class="flowrow">
-        <div class="fcell"><div class="fi">01</div><div class="ft">Signal</div><div class="fd">Salary lands; ₹85k sits idle for weeks.</div></div>
-        <div class="farrow">&rarr;</div>
-        <div class="fcell"><div class="fi">02</div><div class="ft">Broadcast</div><div class="fd">A generic "open an FD" SMS goes to millions.</div></div>
-        <div class="farrow">&rarr;</div>
-        <div class="fcell"><div class="fi">03</div><div class="ft">Ignored</div><div class="fd">Wrong time, wrong language, no easy action.</div></div>
-        <div class="farrow">&rarr;</div>
-        <div class="fcell"><div class="fi">04</div><div class="ft">Drift</div><div class="fd">Idle money, dormant account, churn to fintechs.</div></div>
-      </div>
+      <div class="astep"><div class="ai">01</div><div class="at">Signal</div><div class="ad">Salary lands; ₹85k sits idle for weeks.</div></div>
+      <div class="acon">→</div>
+      <div class="astep"><div class="ai">02</div><div class="at">Broadcast</div><div class="ad">A generic "open an FD" SMS goes to millions.</div></div>
+      <div class="acon">→</div>
+      <div class="astep"><div class="ai">03</div><div class="at">Ignored</div><div class="ad">Wrong time, wrong language, no easy action.</div></div>
+      <div class="acon">→</div>
+      <div class="astep"><div class="ai">04</div><div class="at">Drift</div><div class="ad">Idle money, dormant account, churn to fintechs.</div></div>
     </div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>01 &middot; The Problem</span></div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 01 — The Problem</span></div>
 </section>
 
-<!-- ============ PAGE 3 — WHY NOW ============ -->
+<!-- ===== PAGE 3 — WHY NOW ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">02 / WHY NOW</div>
-    <h1 class="sec">The engagement layer<br><span class="em">nobody</span> has built.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
+    <div class="ix"><div class="sq ink">02</div><div class="kick">Why Now</div></div>
+    <h1 class="big">The engagement layer<br><span class="em">nobody</span> has built.</h1>
     <div class="forces">
-      <div class="force">
-        <div class="num">FORCE 01</div>
-        <h3>Agentic AI crossed the line</h3>
-        <p>Reliable tool-use and multi-agent orchestration (LangGraph, Claude) now let software <i>act</i> safely on a customer's behalf &mdash; not just chat. Autonomy with guardrails is finally production-grade.</p>
-        <span class="stat">From chatbots to agents that act</span>
-      </div>
-      <div class="force">
-        <div class="num">FORCE 02</div>
-        <h3>Bharat is consent-ready</h3>
-        <p>UPI-scale rails, the live <b>Account Aggregator</b> consent framework, and Bhashini's 22-language stack make vernacular, consented, real-time action possible at population scale for the first time.</p>
-        <span class="stat">Consent &middot; vernacular &middot; real-time</span>
-      </div>
-      <div class="force">
-        <div class="num">FORCE 03</div>
-        <h3>The churn clock is ticking</h3>
-        <p>Fintechs already own daily engagement; idle CASA and dormant accounts are lifetime value bleeding out. Proactive, personal engagement is now a balance-sheet defence, not a nicety.</p>
-        <span class="stat">Engagement defends the balance sheet</span>
-      </div>
+      <div class="force"><div class="fn">FORCE 01</div><h3>Agentic AI crossed the line</h3><p>Reliable tool-use and multi-agent orchestration (LangGraph, Claude) now let software <i>act</i> safely on a customer's behalf — not just chat. Autonomy with guardrails is production-grade.</p><div class="fs">From chatbots to agents that act</div></div>
+      <div class="force"><div class="fn">FORCE 02</div><h3>Bharat is consent-ready</h3><p>UPI-scale rails, the live Account Aggregator framework, and Bhashini's 22-language stack make vernacular, consented, real-time action possible at population scale for the first time.</p><div class="fs">Consent · vernacular · real-time</div></div>
+      <div class="force"><div class="fn">FORCE 03</div><h3>The churn clock is ticking</h3><p>Fintechs already own daily engagement; idle CASA and dormant accounts are lifetime value bleeding out. Proactive, personal engagement is now a balance-sheet defence.</p><div class="fs">Engagement defends the balance sheet</div></div>
     </div>
-    <div class="gap-band">
-      <div class="lbl">The unfilled gap</div>
-      <p>Banks can <b>detect</b> moments (analytics) and have the <b>channels</b> (YONO, WhatsApp) &mdash; but the <b>proactive, explainable, action-closing, vernacular engagement layer</b> that reaches the right customer, completes the action under <span class="tl">consent and guardrails</span>, and learns from every outcome <b>does not exist</b>. That is Saarthi: an agent crew that turns a detected signal into a finished, audited action.</p>
+    <div class="gapblock">
+      <div class="gl">The unfilled gap</div>
+      <p>Banks can <u>detect</u> moments and own the <u>channels</u> — but the proactive, explainable, action-closing, vernacular engagement layer that reaches the right customer, completes the action under consent and guardrails, and learns from every outcome <u>does not exist</u>. That is Saarthi.</p>
     </div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>02 &middot; Why Now</span></div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 02 — Why Now</span></div>
 </section>
 
-<!-- ============ PAGE 4 — THE SOLUTION ============ -->
+<!-- ===== PAGE 4 — SOLUTION ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">03 / THE SOLUTION</div>
-    <h1 class="sec">One loop: signal to<br><span class="em">finished action</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <div class="pipe-big">
-      <svg viewBox="0 0 752 196" font-family="IBM Plex Mono">
-        <defs><marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#E7A23A"/></marker></defs>
-        <line x1="14" y1="9" x2="738" y2="9" stroke="#D8CFBE" stroke-width="0.6" stroke-dasharray="2 2"/>
-        <text x="20" y="7" fill="#736857" font-size="7.6" letter-spacing="2.2">MONEY-MOMENT</text>
-        <text x="732" y="7" fill="#736857" font-size="7.6" letter-spacing="2.2" text-anchor="end">OUTCOME + LEARNING</text>
-        <g font-family="IBM Plex Mono">
-          <!-- 6 stages -->
-          <!-- s1 -->
-          <g transform="translate(6,20)"><rect width="112" height="150" rx="6" fill="#0A1A30"/><text x="10" y="18" fill="#E7A23A" font-size="10" font-weight="700" letter-spacing="2">01</text>
-            <circle cx="56" cy="52" r="14" fill="none" stroke="#37D6C3" stroke-width="1.7"/><circle cx="56" cy="52" r="3.2" fill="#37D6C3"/><line x1="56" y1="30" x2="56" y2="36" stroke="#37D6C3" stroke-width="1.6"/><line x1="56" y1="68" x2="56" y2="74" stroke="#37D6C3" stroke-width="1.6"/>
-            <text x="56" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">SENSE</text><line x1="42" y1="103" x2="70" y2="103" stroke="#E7A23A" stroke-width="1.3"/>
-            <text x="56" y="122" text-anchor="middle" fill="#9fb2c6" font-size="8.6">a moment</text><text x="56" y="133" text-anchor="middle" fill="#9fb2c6" font-size="8.6">surfaces</text></g>
-          <line x1="120" y1="95" x2="134" y2="95" stroke="#E7A23A" stroke-width="2" marker-end="url(#arr)"/>
-          <!-- s2 -->
-          <g transform="translate(130,20)"><rect width="112" height="150" rx="6" fill="#102A46"/><text x="10" y="18" fill="#E7A23A" font-size="10" font-weight="700" letter-spacing="2">02</text>
-            <g transform="translate(56,52)" stroke="#F6B84B" stroke-width="1.5" fill="none"><circle cx="-14" cy="-8" r="3" fill="#F6B84B" stroke="none"/><circle cx="-14" cy="8" r="3" fill="#F6B84B" stroke="none"/><circle cx="6" cy="0" r="3.4" fill="#F6B84B" stroke="none"/><line x1="-11" y1="-8" x2="3" y2="0"/><line x1="-11" y1="8" x2="3" y2="0"/></g>
-            <text x="56" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">REASON</text><line x1="42" y1="103" x2="70" y2="103" stroke="#E7A23A" stroke-width="1.3"/>
-            <text x="56" y="122" text-anchor="middle" fill="#9fb2c6" font-size="8.6">next-best</text><text x="56" y="133" text-anchor="middle" fill="#9fb2c6" font-size="8.6">action</text></g>
-          <line x1="244" y1="95" x2="258" y2="95" stroke="#E7A23A" stroke-width="2" marker-end="url(#arr)"/>
-          <!-- s3 -->
-          <g transform="translate(254,20)"><rect width="112" height="150" rx="6" fill="#102A46"/><text x="10" y="18" fill="#E7A23A" font-size="10" font-weight="700" letter-spacing="2">03</text>
-            <g transform="translate(56,52)" fill="none" stroke="#F6B84B" stroke-width="1.8" stroke-linejoin="round"><path d="M0,-16 L14,-11 L14,3 C14,12 7,17 0,20 C-7,17 -14,12 -14,3 L-14,-11 Z"/><path d="M-6,1 L-1,6 L8,-5"/></g>
-            <text x="56" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">GUARD</text><line x1="42" y1="103" x2="70" y2="103" stroke="#E7A23A" stroke-width="1.3"/>
-            <text x="56" y="122" text-anchor="middle" fill="#9fb2c6" font-size="8.6">consent &amp;</text><text x="56" y="133" text-anchor="middle" fill="#9fb2c6" font-size="8.6">suitability</text></g>
-          <line x1="368" y1="95" x2="382" y2="95" stroke="#E7A23A" stroke-width="2" marker-end="url(#arr)"/>
-          <!-- s4 -->
-          <g transform="translate(378,20)"><rect width="112" height="150" rx="6" fill="#102A46"/><text x="10" y="18" fill="#E7A23A" font-size="10" font-weight="700" letter-spacing="2">04</text>
-            <g transform="translate(56,52)" fill="none" stroke="#F6B84B" stroke-width="1.6"><circle cx="0" cy="0" r="15"/><text x="0" y="4" text-anchor="middle" fill="#F6B84B" font-size="11" font-weight="700" stroke="none" font-family="IBM Plex Mono">अ</text></g>
-            <text x="56" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">PERSONALISE</text><line x1="42" y1="103" x2="70" y2="103" stroke="#E7A23A" stroke-width="1.3"/>
-            <text x="56" y="122" text-anchor="middle" fill="#9fb2c6" font-size="8.6">language ·</text><text x="56" y="133" text-anchor="middle" fill="#9fb2c6" font-size="8.6">channel · time</text></g>
-          <line x1="492" y1="95" x2="506" y2="95" stroke="#E7A23A" stroke-width="2" marker-end="url(#arr)"/>
-          <!-- s5 -->
-          <g transform="translate(502,20)"><rect width="112" height="150" rx="6" fill="#102A46"/><text x="10" y="18" fill="#E7A23A" font-size="10" font-weight="700" letter-spacing="2">05</text>
-            <g transform="translate(56,52)" fill="none" stroke="#F6B84B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-3,-15 L-13,3 L0,3 L-3,16 L13,-3 L0,-3 Z" fill="#F6B84B" stroke="none"/></g>
-            <text x="56" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">ACT</text><line x1="42" y1="103" x2="70" y2="103" stroke="#E7A23A" stroke-width="1.3"/>
-            <text x="56" y="122" text-anchor="middle" fill="#9fb2c6" font-size="8.6">one tap on</text><text x="56" y="133" text-anchor="middle" fill="#9fb2c6" font-size="8.6">bank APIs</text></g>
-          <line x1="616" y1="95" x2="630" y2="95" stroke="#E7A23A" stroke-width="2" marker-end="url(#arr)"/>
-          <!-- s6 -->
-          <g transform="translate(626,20)"><rect width="112" height="150" rx="6" fill="#0A1A30"/><text x="10" y="18" fill="#37D6C3" font-size="10" font-weight="700" letter-spacing="2">06</text>
-            <g transform="translate(56,52)" fill="none" stroke="#37D6C3" stroke-width="1.8" stroke-linecap="round"><path d="M-14,0 A14,14 0 1 1 -7,12"/><path d="M-14,-6 L-14,2 L-6,2"/></g>
-            <text x="56" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">LEARN</text><line x1="42" y1="103" x2="70" y2="103" stroke="#37D6C3" stroke-width="1.3"/>
-            <text x="56" y="122" text-anchor="middle" fill="#9fb2c6" font-size="8.6">retrain on</text><text x="56" y="133" text-anchor="middle" fill="#9fb2c6" font-size="8.6">the outcome</text></g>
-        </g>
-        <line x1="14" y1="184" x2="738" y2="184" stroke="#E7A23A" stroke-width="0.6" stroke-opacity=".55"/>
-        <text x="376" y="194" text-anchor="middle" fill="#736857" font-size="9" letter-spacing="2.6">PROACTIVE  ·  VERNACULAR  ·  ACTION-CLOSING  ·  CONSENT-GATED</text>
-      </svg>
+    <div class="ix"><div class="sq saff">03</div><div class="kick">The Solution</div></div>
+    <h1 class="big">One loop: signal to<br><span class="em">finished action</span>.</h1>
+    <div class="pipe">
+      <div class="pst ink"><div class="pi">01</div><div class="ph">Sense</div><div class="pd">a money-moment surfaces</div></div>
+      <div class="pst saff"><div class="pi">02</div><div class="ph">Reason</div><div class="pd">next-best-action</div></div>
+      <div class="pst ink"><div class="pi">03</div><div class="ph">Guard</div><div class="pd">consent &amp; suitability</div></div>
+      <div class="pst teal"><div class="pi">04</div><div class="ph">Personalise</div><div class="pd">language · channel · time</div></div>
+      <div class="pst ink"><div class="pi">05</div><div class="ph">Act</div><div class="pd">one tap on bank APIs</div></div>
+      <div class="pst saff"><div class="pi">06</div><div class="ph">Learn</div><div class="pd">retrain on the outcome</div></div>
     </div>
-    <div class="caps6">
-      <div class="cap"><div class="ic"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="13" stroke="#E7A23A" stroke-width="1.7"/><circle cx="18" cy="18" r="3.4" fill="#E7A23A"/><line x1="18" y1="2" x2="18" y2="7" stroke="#E7A23A" stroke-width="1.5"/><line x1="18" y1="29" x2="18" y2="34" stroke="#E7A23A" stroke-width="1.5"/></svg></div><div class="lb"><div class="t">Proactive</div><div class="s">reaches the money-moment</div></div></div>
-      <div class="cap"><div class="ic"><svg viewBox="0 0 36 36" fill="none"><path d="M5,12 L18,5 L31,12 L18,19 Z" stroke="#E7A23A" stroke-width="1.6" stroke-linejoin="round"/><path d="M5,12 L5,24 L18,31 L31,24 L31,12" stroke="#E7A23A" stroke-width="1.6" stroke-linejoin="round"/></svg></div><div class="lb"><div class="t">Acts, not advises</div><div class="s">one-tap execution</div></div></div>
-      <div class="cap"><div class="ic"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="13" stroke="#E7A23A" stroke-width="1.6"/><path d="M5,18 H31 M18,5 a18,13 0 0 1 0,26 a18,13 0 0 1 0,-26" stroke="#E7A23A" stroke-width="1.2"/></svg></div><div class="lb"><div class="t">Vernacular &amp; voice</div><div class="s">22 languages</div></div></div>
-      <div class="cap"><div class="ic"><svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L31 9 L31 18 C31 24.5 25.5 30 18 32 C10.5 30 5 24.5 5 18 L5 9 Z" stroke="#E7A23A" stroke-width="1.7"/><path d="M12 17.5 L17 22.5 L25 13" stroke="#E7A23A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="lb"><div class="t">Guardrails-first</div><div class="s">consent · suitability</div></div></div>
-      <div class="cap"><div class="ic"><svg viewBox="0 0 36 36" fill="none"><circle cx="11" cy="13" r="3" fill="#E7A23A"/><circle cx="25" cy="13" r="3" fill="#E7A23A"/><circle cx="18" cy="26" r="3.4" fill="#E7A23A"/><line x1="11" y1="13" x2="18" y2="26" stroke="#E7A23A" stroke-width="1.3"/><line x1="25" y1="13" x2="18" y2="26" stroke="#E7A23A" stroke-width="1.3"/><line x1="11" y1="13" x2="25" y2="13" stroke="#E7A23A" stroke-width="1.3"/></svg></div><div class="lb"><div class="t">A crew, not a bot</div><div class="s">multi-agent runtime</div></div></div>
-      <div class="cap"><div class="ic"><svg viewBox="0 0 36 36" fill="none"><path d="M6,18 A12,12 0 1 1 9,26" stroke="#E7A23A" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M6,10 L6,18 L14,18" stroke="#E7A23A" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div><div class="lb"><div class="t">Learns each outcome</div><div class="s">timing &amp; offers tune</div></div></div>
+    <div class="caps">
+      <div class="capx"><div class="cd">↑</div><div><div class="ct">Proactive</div><div class="cs">reaches the money-moment</div></div></div>
+      <div class="capx"><div class="cd">✓</div><div><div class="ct">Acts, not advises</div><div class="cs">one-tap execution</div></div></div>
+      <div class="capx"><div class="cd">अ</div><div><div class="ct">Vernacular &amp; voice</div><div class="cs">22 languages</div></div></div>
+      <div class="capx"><div class="cd">⛉</div><div><div class="ct">Guardrails-first</div><div class="cs">consent · suitability</div></div></div>
+      <div class="capx"><div class="cd">⁘</div><div><div class="ct">A crew, not a bot</div><div class="cs">multi-agent runtime</div></div></div>
+      <div class="capx"><div class="cd">↻</div><div><div class="ct">Learns each outcome</div><div class="cs">timing &amp; offers tune</div></div></div>
     </div>
-    <div class="stack-row">
-      <span class="lbl">Plugs into</span>
-      <span class="pill">YONO in-app</span><span class="pill">WhatsApp Business</span><span class="pill">Vernacular voice</span>
-      <span class="pill">Account Aggregator</span><span class="pill">Bhashini / Sarvam</span><span class="pill">Core-banking APIs</span>
+    <div class="stackrow">
+      <span class="sl">Plugs into</span>
+      <span class="sp">YONO in-app</span><span class="sp">WhatsApp Business</span><span class="sp">Vernacular voice</span><span class="sp">Account Aggregator</span><span class="sp">Bhashini / Sarvam</span><span class="sp">Core-banking APIs</span>
     </div>
-    <div class="solslip"><div class="lbl">ONE LOOP</div><p><b>Beyond notifications:</b> the closed <span class="tl">sense &rarr; reason &rarr; guard &rarr; personalise &rarr; act &rarr; learn</span> loop that reaches the right customer and <b>finishes the job</b> &mdash; for all 50 crore, not just the 1%.</p></div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>03 &middot; The Solution</span></div>
+    <div class="oneline"><b>Beyond notifications:</b> the closed <span class="tl">sense → reason → guard → personalise → act → learn</span> loop that reaches the right customer and finishes the job — for all 50 crore, not just the 1%.</div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 03 — The Solution</span></div>
 </section>
 
-<!-- ============ PAGE 5 — ARCHITECTURE ============ -->
+<!-- ===== PAGE 5 — ARCHITECTURE ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">04 / SYSTEM ARCHITECTURE</div>
-    <h1 class="sec">From signal to a<br><span class="em">finished, audited</span> action.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <div class="archsvg">
-      <svg viewBox="0 0 720 832" font-family="IBM Plex Mono">
-        <defs><marker id="arrA" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E7A23A"/></marker></defs>
-        <rect x="4" y="4" width="712" height="824" rx="10" fill="none" stroke="#E7A23A" stroke-width="1.4" stroke-dasharray="5 3"/>
-        <rect x="22" y="-7" width="392" height="22" fill="#F6F2E9"/><text x="32" y="9" fill="#E7A23A" font-size="9" font-weight="700" letter-spacing="2.4">EVENT-DRIVEN &#183; API-FIRST &#183; CLOUD-NATIVE</text>
-        <rect x="500" y="-7" width="196" height="22" fill="#F6F2E9"/><text x="688" y="9" fill="#E7A23A" font-size="8.4" font-weight="700" letter-spacing="2.6" text-anchor="end">CONSENT-GATED &#183; AUDIT-LOGGED</text>
-
-        <text x="30" y="46" fill="#736857" font-size="10.5" font-weight="700" letter-spacing="3">SIGNALS: REAL-TIME, CROSS-CHANNEL</text>
-        <line x1="30" y1="52" x2="690" y2="52" stroke="#D8CFBE" stroke-width="0.6"/>
-        <g>
-          <g transform="translate(30,64)"><rect width="100" height="62" rx="5" fill="#F3EBD8" stroke="#D8CFBE" stroke-width="0.8"/><text x="50" y="34" text-anchor="middle" fill="#0A1A30" font-weight="700" font-size="10">Core-banking</text><text x="50" y="48" text-anchor="middle" fill="#736857" font-size="8.4">UPI · IMPS · NEFT</text></g>
-          <g transform="translate(140,64)"><rect width="100" height="62" rx="5" fill="#F3EBD8" stroke="#D8CFBE" stroke-width="0.8"/><text x="50" y="34" text-anchor="middle" fill="#0A1A30" font-weight="700" font-size="10">Balances · SIs</text><text x="50" y="48" text-anchor="middle" fill="#736857" font-size="8.4">EMIs · bills</text></g>
-          <g transform="translate(250,64)"><rect width="100" height="62" rx="5" fill="#F3EBD8" stroke="#D8CFBE" stroke-width="0.8"/><text x="50" y="34" text-anchor="middle" fill="#0A1A30" font-weight="700" font-size="10">Acct Aggregator</text><text x="50" y="48" text-anchor="middle" fill="#736857" font-size="8.4">consented data</text></g>
-          <g transform="translate(360,64)"><rect width="100" height="62" rx="5" fill="#F3EBD8" stroke="#D8CFBE" stroke-width="0.8"/><text x="50" y="34" text-anchor="middle" fill="#0A1A30" font-weight="700" font-size="10">App telemetry</text><text x="50" y="48" text-anchor="middle" fill="#736857" font-size="8.4">YONO events</text></g>
-          <g transform="translate(470,64)"><rect width="100" height="62" rx="5" fill="#F3EBD8" stroke="#D8CFBE" stroke-width="0.8"/><text x="50" y="34" text-anchor="middle" fill="#0A1A30" font-weight="700" font-size="10">Life events</text><text x="50" y="48" text-anchor="middle" fill="#736857" font-size="8.4">salary · tax · KYC</text></g>
-          <g transform="translate(580,64)"><rect width="100" height="62" rx="5" fill="#F3EBD8" stroke="#D8CFBE" stroke-width="0.8"/><text x="50" y="34" text-anchor="middle" fill="#0A1A30" font-weight="700" font-size="10">Product &amp; policy</text><text x="50" y="48" text-anchor="middle" fill="#736857" font-size="8.4">catalog · RAG</text></g>
-        </g>
-        <line x1="80" y1="126" x2="80" y2="146" stroke="#E7A23A" stroke-width="1.3"/><line x1="630" y1="126" x2="630" y2="146" stroke="#E7A23A" stroke-width="1.3"/>
-        <line x1="80" y1="146" x2="630" y2="146" stroke="#E7A23A" stroke-width="1.5"/>
-        <line x1="355" y1="146" x2="355" y2="176" stroke="#E7A23A" stroke-width="2" marker-end="url(#arrA)"/>
-
-        <rect x="30" y="186" width="660" height="404" rx="6" fill="#0A1A30"/>
-        <rect x="30" y="186" width="660" height="32" rx="6" fill="#102A46"/>
-        <text x="50" y="207" fill="#F6B84B" font-size="11" font-weight="700" letter-spacing="3">SBI SAARTHI &#183; AGENTIC ENGAGEMENT RUNTIME</text>
-        <text x="670" y="207" fill="#9fb2c6" font-size="10" letter-spacing="2" text-anchor="end">LANGGRAPH</text>
-        <line x1="30" y1="218" x2="690" y2="218" stroke="#173a5e"/>
-
-        <g transform="translate(38.5,238)"><rect width="145" height="330" rx="5" fill="#102A46" stroke="#173a5e" stroke-width="0.8"/><text x="73" y="26" text-anchor="middle" fill="#37D6C3" font-size="10" font-weight="700" letter-spacing="2">LAYER 01</text><text x="73" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">SENSOR</text><line x1="50" y1="132" x2="96" y2="132" stroke="#E7A23A" stroke-width="1.4"/><text x="73" y="156" text-anchor="middle" fill="#dbe3ec" font-size="9.6">detects the</text><text x="73" y="168" text-anchor="middle" fill="#dbe3ec" font-size="9.6">money-moment</text><line x1="20" y1="186" x2="126" y2="186" stroke="#173a5e"/><text x="73" y="206" text-anchor="middle" fill="#F6B84B" font-size="9" letter-spacing=".5">+ Kafka event stream</text><text x="73" y="222" text-anchor="middle" fill="#9fb2c6" font-size="9">+ idle · EMI · dormant</text><text x="73" y="238" text-anchor="middle" fill="#9fb2c6" font-size="9">+ tax · scam · life</text><text x="73" y="254" text-anchor="middle" fill="#9fb2c6" font-size="9">+ frequency caps</text>
-          <g transform="translate(73,72)" stroke="#F6B84B" stroke-width="1.7" fill="none"><circle cx="0" cy="0" r="13"/><circle cx="0" cy="0" r="3" fill="#F6B84B" stroke="none"/></g></g>
-        <line x1="186" y1="403" x2="202" y2="403" stroke="#E7A23A" stroke-width="2" marker-end="url(#arrA)"/>
-
-        <g transform="translate(204.5,238)"><rect width="145" height="330" rx="5" fill="#102A46" stroke="#173a5e" stroke-width="0.8"/><text x="73" y="26" text-anchor="middle" fill="#37D6C3" font-size="10" font-weight="700" letter-spacing="2">LAYER 02</text><text x="73" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">ORCHESTRATOR</text><line x1="50" y1="132" x2="96" y2="132" stroke="#E7A23A" stroke-width="1.4"/><text x="73" y="156" text-anchor="middle" fill="#dbe3ec" font-size="9.6">plans &amp; routes</text><text x="73" y="168" text-anchor="middle" fill="#dbe3ec" font-size="9.6">the crew</text><line x1="20" y1="186" x2="126" y2="186" stroke="#173a5e"/><text x="73" y="206" text-anchor="middle" fill="#F6B84B" font-size="9" letter-spacing=".5">+ who · when · what</text><text x="73" y="222" text-anchor="middle" fill="#9fb2c6" font-size="9">+ priority &amp; budget</text><text x="73" y="238" text-anchor="middle" fill="#9fb2c6" font-size="9">+ memory (cust-360)</text><text x="73" y="254" text-anchor="middle" fill="#9fb2c6" font-size="9">+ human-in-the-loop</text>
-          <g transform="translate(73,72)" stroke="#F6B84B" stroke-width="1.4" fill="none"><g fill="#F6B84B" stroke="none"><circle cx="-16" cy="-9" r="2.8"/><circle cx="-16" cy="9" r="2.8"/><circle cx="4" cy="0" r="3.4"/></g><line x1="-13" y1="-9" x2="1" y2="0"/><line x1="-13" y1="9" x2="1" y2="0"/></g></g>
-        <line x1="352" y1="403" x2="368" y2="403" stroke="#E7A23A" stroke-width="2" marker-end="url(#arrA)"/>
-
-        <g transform="translate(370.5,238)"><rect width="145" height="330" rx="5" fill="#102A46" stroke="#173a5e" stroke-width="0.8"/><text x="73" y="26" text-anchor="middle" fill="#37D6C3" font-size="10" font-weight="700" letter-spacing="2">LAYER 03</text><text x="73" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">AGENT CREW</text><line x1="50" y1="132" x2="96" y2="132" stroke="#E7A23A" stroke-width="1.4"/><text x="73" y="156" text-anchor="middle" fill="#dbe3ec" font-size="9.6">specialised,</text><text x="73" y="168" text-anchor="middle" fill="#dbe3ec" font-size="9.6">tool-using</text><line x1="20" y1="186" x2="126" y2="186" stroke="#173a5e"/><text x="73" y="206" text-anchor="middle" fill="#F6B84B" font-size="9" letter-spacing=".5">+ Insight / NBA</text><text x="73" y="222" text-anchor="middle" fill="#9fb2c6" font-size="9">+ Guardrail / consent</text><text x="73" y="238" text-anchor="middle" fill="#9fb2c6" font-size="9">+ Personalization</text><text x="73" y="254" text-anchor="middle" fill="#9fb2c6" font-size="9">+ Action / execution</text>
-          <g transform="translate(73,72)" fill="#F6B84B"><rect x="-18" y="-10" width="11" height="11" rx="2"/><rect x="-5.5" y="-10" width="11" height="11" rx="2" fill-opacity=".75"/><rect x="7" y="-10" width="11" height="11" rx="2" fill-opacity=".5"/></g></g>
-        <line x1="518" y1="403" x2="534" y2="403" stroke="#E7A23A" stroke-width="2" marker-end="url(#arrA)"/>
-
-        <g transform="translate(536.5,238)"><rect width="145" height="330" rx="5" fill="#102A46" stroke="#173a5e" stroke-width="0.8"/><text x="73" y="26" text-anchor="middle" fill="#37D6C3" font-size="10" font-weight="700" letter-spacing="2">LAYER 04</text><text x="73" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">LEARNING</text><line x1="50" y1="132" x2="96" y2="132" stroke="#E7A23A" stroke-width="1.4"/><text x="73" y="156" text-anchor="middle" fill="#dbe3ec" font-size="9.6">reward from</text><text x="73" y="168" text-anchor="middle" fill="#dbe3ec" font-size="9.6">every outcome</text><line x1="20" y1="186" x2="126" y2="186" stroke="#173a5e"/><text x="73" y="206" text-anchor="middle" fill="#F6B84B" font-size="9" letter-spacing=".5">+ contextual bandit</text><text x="73" y="222" text-anchor="middle" fill="#9fb2c6" font-size="9">+ timing / channel</text><text x="73" y="238" text-anchor="middle" fill="#9fb2c6" font-size="9">+ offline retrain</text><text x="73" y="254" text-anchor="middle" fill="#9fb2c6" font-size="9">+ drift monitoring</text>
-          <g transform="translate(73,72)" stroke="#37D6C3" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M-13,0 A13,13 0 1 1 -6,11"/><path d="M-13,-6 L-13,1 L-6,1"/></g></g>
-
-        <line x1="367.5" y1="590" x2="367.5" y2="606" stroke="#E7A23A" stroke-width="2"/>
-        <path d="M200,606 L535,606" stroke="#E7A23A" stroke-width="2"/>
-        <line x1="200" y1="606" x2="200" y2="624" stroke="#E7A23A" stroke-width="2" marker-end="url(#arrA)"/>
-        <line x1="535" y1="606" x2="535" y2="624" stroke="#E7A23A" stroke-width="2" marker-end="url(#arrA)"/>
-
-        <g transform="translate(36,632)"><rect width="328" height="142" rx="5" fill="#F3EBD8" stroke="#E7A23A" stroke-width="1.4"/><rect x="0" y="0" width="328" height="22" rx="5" fill="#E7A23A"/><text x="14" y="15" fill="#0A1A30" font-size="8.5" font-weight="700" letter-spacing="2">OMNICHANNEL DELIVERY</text>
-          <g transform="translate(80,50)" fill="#0A1A30" font-size="9"><text font-weight="700" font-size="9.6">Right channel, right moment</text><text y="14" fill="#34301f" font-size="8.2">YONO card · WhatsApp · voice · SMS</text><text y="32" font-weight="700" font-size="9.6">Right language</text><text y="46" fill="#34301f" font-size="8.2">22 Indian languages, text &amp; voice</text><text y="64" font-weight="700" font-size="9.6">Frequency-capped</text><text y="78" fill="#34301f" font-size="8.2">no spam · honours opt-outs</text></g>
-          <g transform="translate(34,62)" fill="none" stroke="#0A1A30" stroke-width="1.8" stroke-linejoin="round"><rect x="-13" y="-20" width="26" height="40" rx="3"/><line x1="-5" y1="15" x2="5" y2="15" stroke-width="2"/></g></g>
-
-        <g transform="translate(386,632)"><rect width="298" height="142" rx="5" fill="#0A1A30" stroke="#E7A23A" stroke-width="1.4"/><rect x="0" y="0" width="298" height="22" rx="5" fill="#E7A23A"/><text x="14" y="15" fill="#0A1A30" font-size="8.5" font-weight="700" letter-spacing="2">ONE-TAP ACTION</text>
-          <g transform="translate(80,50)" fill="#fff" font-size="9"><text font-weight="700" font-size="9.6">Executes on banking APIs</text><text y="14" fill="#9fb2c6" font-size="8.2">FD · SIP · EMI shift · reactivate</text><text y="32" font-weight="700" font-size="9.6">Consent token + maker-checker</text><text y="46" fill="#9fb2c6" font-size="8.2">suitability-checked, never silent</text><text y="64" font-weight="700" font-size="9.6">End-to-end audit log</text><text y="78" fill="#9fb2c6" font-size="8.2">every action · who · why · when</text></g>
-          <g transform="translate(34,62)" fill="none" stroke="#F6B84B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-3,-18 L-13,2 L0,2 L-3,18 L13,-3 L0,-3 Z" fill="#F6B84B" stroke="none"/></g></g>
-
-        <line x1="30" y1="790" x2="690" y2="790" stroke="#D8CFBE" stroke-width="0.6"/>
-        <g transform="translate(30,808)" font-size="9.6"><g><circle cx="0" cy="0" r="2.8" fill="#3E7C58"/><text x="8" y="3" fill="#0A1A30" font-weight="700" letter-spacing="1.4">CONSENT (AA)</text></g><g transform="translate(150,0)"><circle cx="0" cy="0" r="2.8" fill="#3E7C58"/><text x="8" y="3" fill="#0A1A30" font-weight="700" letter-spacing="1.4">PII-MINIMISED</text></g><g transform="translate(310,0)"><circle cx="0" cy="0" r="2.8" fill="#3E7C58"/><text x="8" y="3" fill="#0A1A30" font-weight="700" letter-spacing="1.4">AUDIT-LOGGED</text></g><g transform="translate(470,0)"><circle cx="0" cy="0" r="2.8" fill="#3E7C58"/><text x="8" y="3" fill="#0A1A30" font-weight="700" letter-spacing="1.4">HUMAN-IN-LOOP</text></g></g>
-      </svg>
+    <div class="ix"><div class="sq ink">04</div><div class="kick">System Architecture</div></div>
+    <h1 class="big">From signal to a<br><span class="em">finished, audited</span> action.</h1>
+    <div class="arch-lbl">Signals — real-time, cross-channel</div>
+    <div class="chips6">
+      <div class="sigchip"><div class="t">Core-banking</div><div class="s">UPI · IMPS</div></div>
+      <div class="sigchip"><div class="t">Balances · SIs</div><div class="s">EMIs · bills</div></div>
+      <div class="sigchip"><div class="t">Acct Aggregator</div><div class="s">consented</div></div>
+      <div class="sigchip"><div class="t">App telemetry</div><div class="s">YONO events</div></div>
+      <div class="sigchip"><div class="t">Life events</div><div class="s">salary · tax</div></div>
+      <div class="sigchip"><div class="t">Product · policy</div><div class="s">catalog · RAG</div></div>
     </div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>04 &middot; Architecture</span></div>
-  </div>
-</section>
-
-<!-- ============ PAGE 6 — THE PRODUCT ============ -->
-<section class="page">
-  <div class="pad">
-    <div class="secno">05 / THE PRODUCT</div>
-    <h1 class="sec">One message: sensed,<br>reasoned, <span class="em">acted</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <p class="lead" style="margin-top:5mm; max-width:172mm;">The customer never sees the machinery &mdash; only a timely message in their language with a single tap. Behind it, the crew has reasoned, cleared guardrails, and prepared a fully audited action.</p>
-    <div class="ui">
-      <div class="ui-bar">
-        <div class="dots"><i class="g"></i><i></i><i></i></div>
-        <div class="ttl"><b>Saarthi</b> &middot; Engagement Console</div>
-        <span class="ui-tag">Illustrative &middot; scenario: idle balance</span>
-        <div class="rt">PROACTIVE &middot; VERNACULAR &middot; AUDIT-LOGGED</div>
+    <div class="down"></div>
+    <div class="runtime">
+      <div class="rt-head"><span style="color:var(--saff)">SBI Saarthi — Agentic Engagement Runtime</span><span>LangGraph</span></div>
+      <div class="layers">
+        <div class="lyr"><div class="ln">LAYER 01</div><div class="lt">Sensor</div><div class="ls">detects the money-moment</div><ul><li>Kafka event stream</li><li>idle · EMI · dormant</li><li>tax · scam · life</li><li>frequency caps</li></ul></div>
+        <div class="lyr"><div class="ln">LAYER 02</div><div class="lt">Orchestrator</div><div class="ls">plans &amp; routes the crew</div><ul><li>who · when · what</li><li>priority &amp; budget</li><li>memory (cust-360)</li><li>human-in-the-loop</li></ul></div>
+        <div class="lyr"><div class="ln">LAYER 03</div><div class="lt">Agent crew</div><div class="ls">specialised, tool-using</div><ul><li>Insight / NBA</li><li>Guardrail / consent</li><li>Personalization</li><li>Action / execution</li></ul></div>
+        <div class="lyr"><div class="ln">LAYER 04</div><div class="lt">Learning</div><div class="ls">reward from every outcome</div><ul><li>contextual bandit</li><li>timing / channel</li><li>offline retrain</li><li>drift monitoring</li></ul></div>
       </div>
-      <div class="ui-body">
-        <div class="ui-main">
-          <div class="ui-acct">
-            <div class="ac"><b>Ravi K. &bull; Savings &bull;&bull;&bull;&bull;7731</b>Pune &middot; salary credited 6 days ago &middot; moment sensed 0.4s ago</div>
-            <div class="ui-badge"><div class="sc">0.82</div><div class="lv">PROPENSITY</div></div>
-          </div>
-          <div class="ui-h">Why now: next-best-action reason codes</div>
-          <div class="ui-reason"><div class="rl"><span><span class="src tab"></span>₹85,000 idle in savings for 40 days</span><span class="v">+0.34</span></div><div class="rb"><i style="width:92%"></i></div></div>
-          <div class="ui-reason"><div class="rl"><span><span class="src tab"></span>Stable salary inflow, low volatility</span><span class="v">+0.21</span></div><div class="rb"><i style="width:60%"></i></div></div>
-          <div class="ui-reason"><div class="rl"><span><span class="src plat"></span>Risk profile fits a liquid Sweep-FD</span><span class="v">+0.17</span></div><div class="rb"><i style="width:50%"></i></div></div>
-          <div class="ui-reason"><div class="rl"><span><span class="src plat"></span>Prefers Hindi · opens WhatsApp ~11:00</span><span class="v">+0.10</span></div><div class="rb"><i style="width:32%"></i></div></div>
-          <div class="ui-legend"><span><i class="tab"></i>from core-banking signals</span><span><i class="plat"></i>needs production feeds: AA · preferences</span></div>
-          <div class="ui-h" style="margin-top:5.5mm">Message delivered &middot; customer's language</div>
-          <div class="ui-msg"><div class="mh">WhatsApp &middot; Hindi</div><div class="mb">&ldquo;नमस्ते रवि &#128075; आपके बचत खाते में ₹85,000 पिछले 40 दिनों से पड़े हैं। मैं ₹50,000 को 7.1% स्वीप-FD में लगा दूँ &mdash; इस साल लगभग ₹3,140 ज़्यादा, और पैसा कभी भी निकाला जा सकता है।&rdquo;</div><div class="ui-langs"><span class="on">हिं</span><span>EN</span><span>த</span><span>+19</span></div></div>
+    </div>
+    <div class="splitdown"><div></div><div></div></div>
+    <div class="outs">
+      <div class="outb saff"><div class="oh">Omnichannel delivery</div><div class="orow"><b>Right channel, moment &amp; language</b> — YONO · WhatsApp · voice · SMS, 22 languages, frequency-capped, opt-outs honoured.</div></div>
+      <div class="outb ink"><div class="oh">One-tap action</div><div class="orow"><b>Executes on banking APIs</b> — FD · SIP · EMI shift · reactivate. Consent token + maker-checker, suitability-checked, never silent.</div></div>
+    </div>
+    <div class="govrow"><span class="govp">Consent (AA)</span><span class="govp">PII-minimised</span><span class="govp">Audit-logged</span><span class="govp">Human-in-loop</span><span class="govp">Event-driven · cloud-native</span></div>
+  </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 04 — Architecture</span></div>
+</section>
+
+<!-- ===== PAGE 6 — PRODUCT ===== -->
+<section class="page">
+  <div class="pad">
+    <div class="ix"><div class="sq saff">05</div><div class="kick">The Product</div></div>
+    <h1 class="big">One message: sensed,<br>reasoned, <span class="em">acted</span>.</h1>
+    <p class="lead" style="margin-top:6mm;max-width:172mm;">The customer sees only a timely message in their language with a single tap. Behind it, the crew has reasoned, cleared guardrails, and prepared a fully audited action.</p>
+    <div class="app">
+      <div class="app-bar"><div class="dot">S</div><div class="t">Saarthi <span>· Engagement Console</span></div><span class="tag">Illustrative · idle balance</span><div class="rt">PROACTIVE · VERNACULAR · AUDITED</div></div>
+      <div class="app-body">
+        <div class="app-main">
+          <div class="acct"><div><div class="nm">Ravi K. · Savings ••••7731</div><div class="mt">Pune · salary credited 6 days ago · moment sensed 0.4s ago</div></div><div class="score"><div class="n">0.82</div><div class="l">PROPENSITY</div></div></div>
+          <div class="sub">Why now — next-best-action reason codes</div>
+          <div class="rsn"><div class="rl"><span>₹85,000 idle in savings for 40 days</span><span class="v">+0.34</span></div><div class="bar"><i style="width:92%"></i></div></div>
+          <div class="rsn"><div class="rl"><span>Stable salary inflow, low volatility</span><span class="v">+0.21</span></div><div class="bar"><i style="width:60%"></i></div></div>
+          <div class="rsn"><div class="rl"><span>Risk profile fits a liquid Sweep-FD</span><span class="v">+0.17</span></div><div class="bar"><i style="width:50%"></i></div></div>
+          <div class="rsn"><div class="rl"><span>Prefers Hindi · opens WhatsApp ~11:00</span><span class="v">+0.10</span></div><div class="bar"><i style="width:32%"></i></div></div>
+          <div class="sub" style="margin-top:5.5mm">Message delivered — customer's language</div>
+          <div class="msg"><div class="mh">WhatsApp · Hindi</div><div class="mb">&ldquo;नमस्ते रवि &#128075; आपके बचत खाते में ₹85,000 पिछले 40 दिनों से पड़े हैं। मैं ₹50,000 को 7.1% स्वीप-FD में लगा दूँ — इस साल लगभग ₹3,140 ज़्यादा, और पैसा कभी भी निकाला जा सकता है।&rdquo;</div><div class="langs"><span class="on">हिं</span><span>EN</span><span>த</span><span>+19</span></div></div>
         </div>
-        <div class="ui-side">
-          <div class="ui-rec">
-            <div class="t">Recommended action</div>
-            <div class="a">Open ₹50,000 Sweep-FD</div>
-            <div class="s">7.1% · fully liquid · est. +₹3,140 this year. One tap books it on core-banking.</div>
-            <div class="ui-btns"><span class="ui-btn pri">Yes, set it up</span><span class="ui-btn sec">Not now</span></div>
-          </div>
-          <div class="ui-gen">
-            <div class="t">Decision governance</div>
-            <div class="govchain"><span>Sense</span><i>&rarr;</i><span>NBA</span><i>&rarr;</i><span>Guardrail</span><i>&rarr;</i><span>Consent</span><i>&rarr;</i><span>Act</span><i>&rarr;</i><span>Audit</span></div>
-            <div class="govnote">Suitability &amp; consent cleared before delivery; execution is maker-checker on high-value actions and immutably logged: who, why, when. Never spam, never silent.</div>
-            <div class="ui-h" style="color:#37D6C3;margin:4.5mm 0 2.4mm">40-day balance: idle &rarr; mobilised</div>
-            <div class="ui-spark"><svg viewBox="0 0 300 44" font-family="IBM Plex Mono"><line x1="2" y1="36" x2="298" y2="36" stroke="#1f3c5c" stroke-width="1"/><g fill="#3a597d"><rect x="10" y="14" width="7" height="22"/><rect x="34" y="14" width="7" height="22"/><rect x="58" y="13" width="7" height="23"/><rect x="82" y="14" width="7" height="22"/><rect x="106" y="13" width="7" height="23"/><rect x="130" y="14" width="7" height="22"/><rect x="154" y="13" width="7" height="23"/><rect x="178" y="14" width="7" height="22"/><rect x="202" y="14" width="7" height="22"/></g><g fill="#37D6C3"><rect x="226" y="20" width="7" height="16"/><rect x="250" y="26" width="7" height="10"/><rect x="274" y="31" width="7" height="5"/></g><text x="10" y="44" fill="#7e93a9" font-size="7">day 1</text><text x="290" y="44" fill="#37D6C3" font-size="7" text-anchor="end">mobilised</text></svg></div>
-          </div>
+        <div class="app-side">
+          <div class="rec"><div class="t">Recommended action</div><div class="a">Open ₹50,000 Sweep-FD</div><div class="s">7.1% · fully liquid · est. +₹3,140 this year. One tap books it on core-banking.</div><div class="rbtns"><span class="rbtn pri">Yes, set it up</span><span class="rbtn sec">Not now</span></div></div>
+          <div class="gov"><div class="t">Decision governance</div><div class="chain"><span>Sense</span><i>→</i><span>NBA</span><i>→</i><span>Guardrail</span><i>→</i><span>Consent</span><i>→</i><span>Act</span><i>→</i><span>Audit</span></div><div class="govn">Suitability &amp; consent cleared before delivery; high-value execution is maker-checker and immutably logged: who, why, when. Never spam, never silent.</div></div>
         </div>
       </div>
-      <div class="ui-foot"><span><b>Models</b> Claude (plan/tool-use) + SLM · contextual bandit</span><span>Consent-gated · <b>every action audit-logged</b></span></div>
+      <div class="app-foot"><span><b>Models</b> Claude (plan/tool-use) + SLM · contextual bandit</span><span>Consent-gated · <b>every action audit-logged</b></span></div>
     </div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>05 &middot; The Product</span></div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 05 — The Product</span></div>
 </section>
 
-<!-- ============ PAGE 7 — DATA, MODELS & DECISIONING ============ -->
+<!-- ===== PAGE 7 — DATA & MODELS ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">06 / DATA, MODELS &amp; DECISIONING</div>
-    <h1 class="sec">The intelligence under<br>the <span class="em">one tap</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <div class="dwrap">
-      <div class="dcard">
+    <div class="ix"><div class="sq teal">06</div><div class="kick">Data, Models &amp; Decisioning</div></div>
+    <h1 class="big">The intelligence under<br>the <span class="em">one tap</span>.</h1>
+    <div class="dgrid">
+      <div class="donutcard">
         <div class="dh">Signals &amp; feeds</div>
         <div class="dtop">
-          <svg width="96" height="96" viewBox="0 0 96 96">
-            <circle cx="48" cy="48" r="34" fill="none" stroke="#173a5e" stroke-width="12"/>
-            <circle cx="48" cy="48" r="34" fill="none" stroke="#F6B84B" stroke-width="12" stroke-dasharray="92 214" stroke-dashoffset="0" transform="rotate(-90 48 48)"/>
-            <circle cx="48" cy="48" r="34" fill="none" stroke="#37D6C3" stroke-width="12" stroke-dasharray="64 214" stroke-dashoffset="-92" transform="rotate(-90 48 48)"/>
-            <circle cx="48" cy="48" r="34" fill="none" stroke="#6E8BFF" stroke-width="12" stroke-dasharray="40 214" stroke-dashoffset="-156" transform="rotate(-90 48 48)"/>
-          </svg>
-          <div class="dstats">
-            <div class="ds"><div class="n">Real-time<small> · Kafka CDC</small></div><div class="l">transactions · balances · due dates</div></div>
-            <div class="ds"><div class="n">Consented<small> · AA</small></div><div class="l">external accounts, with permission</div></div>
-            <div class="ds"><div class="n">Context<small> · RAG</small></div><div class="l">product, policy &amp; customer-360</div></div>
+          <svg width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="32" fill="none" stroke="#33333f" stroke-width="13"/><circle cx="46" cy="46" r="32" fill="none" stroke="#FFAA15" stroke-width="13" stroke-dasharray="88 201" transform="rotate(-90 46 46)"/><circle cx="46" cy="46" r="32" fill="none" stroke="#0FB6A2" stroke-width="13" stroke-dasharray="60 201" stroke-dashoffset="-88" transform="rotate(-90 46 46)"/><circle cx="46" cy="46" r="32" fill="none" stroke="#37D6C3" stroke-width="13" stroke-dasharray="38 201" stroke-dashoffset="-148" transform="rotate(-90 46 46)"/></svg>
+          <div class="dlist">
+            <div class="di"><div class="n">Real-time<small> · Kafka CDC</small></div><div class="l">transactions · balances · due dates</div></div>
+            <div class="di"><div class="n">Consented<small> · AA</small></div><div class="l">external accounts, with permission</div></div>
+            <div class="di"><div class="n">Context<small> · RAG</small></div><div class="l">product, policy &amp; customer-360</div></div>
           </div>
         </div>
-        <div class="dfoot">Synthetic data only for the prototype &mdash; <b>no real customer data</b>. Every feature traces to a consented, auditable source.</div>
+        <div class="dfoot">Synthetic data only for the prototype — <b>no real customer data</b>. Every feature traces to a consented, auditable source.</div>
       </div>
-      <div class="jpbox" style="display:flex;flex-direction:column;">
-        <div class="jh">Model mix &mdash; right model for each job</div>
-        <div class="modelrow">
-          <span class="g">▸</span> <b>Claude</b> &mdash; planning, tool-use, guardrail reasoning<br>
-          <span class="g">▸</span> <b>Fine-tuned SLMs</b> &mdash; high-volume routine NBA<br>
-          <span class="g">▸</span> <b>XGBoost / LightGBM</b> &mdash; propensity scoring<br>
-          <span class="g">▸</span> <b>Contextual bandit</b> &mdash; timing &amp; channel choice<br>
-          <span class="g">▸</span> <b>Embeddings + RAG</b> &mdash; product / policy retrieval<br>
-          <span class="g">▸</span> <b>Bhashini / Sarvam</b> &mdash; 22-language ASR · TTS · MT
-        </div>
-        <div style="margin-top:auto;padding-top:4mm;font-family:var(--serif);font-size:8.6pt;line-height:1.4;color:#3a352a;border-top:1px solid var(--line);">Cost-tiered: small models handle <b style="font-family:var(--disp);color:var(--navy)">~90%</b> of routine actions; Claude is reserved for complex, high-stakes reasoning.</div>
+      <div class="modelcard">
+        <div class="mh">Model mix — right model for each job</div>
+        <div class="mrow"><span class="k">▸</span> <b>Claude</b> — planning, tool-use, guardrails<br><span class="k">▸</span> <b>Fine-tuned SLMs</b> — high-volume routine NBA<br><span class="k">▸</span> <b>XGBoost / LightGBM</b> — propensity scoring<br><span class="k">▸</span> <b>Contextual bandit</b> — timing &amp; channel<br><span class="k">▸</span> <b>Embeddings + RAG</b> — product / policy<br><span class="k">▸</span> <b>Bhashini / Sarvam</b> — 22-language ASR·TTS·MT</div>
+        <div class="mcost">Cost-tiered: small models handle <b>~90%</b> of routine actions; Claude is reserved for complex, high-stakes reasoning.</div>
       </div>
     </div>
-    <div class="jpbox" style="margin-top:6mm;">
-      <div class="jh">The decision funnel &mdash; from raw events to a finished action</div>
-      <div class="fd" style="margin-top:1mm;">
-        <div class="row"><div class="lab"><span>Events ingested</span><b>stream</b></div><div class="track"><div class="fill" style="width:100%;background:#516a86;"></div></div></div>
-        <div class="row"><div class="lab"><span>Moments detected (Sensor)</span><b>filtered</b></div><div class="track"><div class="fill" style="width:62%;background:#1E9C8C;"></div></div></div>
-        <div class="row"><div class="lab"><span>High-propensity NBAs (Insight)</span><b>ranked</b></div><div class="track"><div class="fill" style="width:38%;background:#37D6C3;"></div></div></div>
-        <div class="row"><div class="lab"><span>Cleared by Guardrail (consent · suitability)</span><b>approved</b></div><div class="track"><div class="fill" style="width:28%;background:#E7A23A;"></div></div></div>
-        <div class="row"><div class="lab"><span>Delivered &amp; acted &rarr; reward to Learning</span><b>outcome</b></div><div class="track"><div class="fill" style="width:18%;background:#F6B84B;"></div></div></div>
-      </div>
+    <div class="funnel">
+      <div class="fh">The decision funnel — raw events to a finished action</div>
+      <div class="frow"><div class="fl"><span>Events ingested</span><b>stream</b></div><div class="ftrack"><i style="width:100%;background:#cfcabb"></i></div></div>
+      <div class="frow"><div class="fl"><span>Moments detected — Sensor</span><b>filtered</b></div><div class="ftrack"><i style="width:62%;background:#0A8E80"></i></div></div>
+      <div class="frow"><div class="fl"><span>High-propensity NBAs — Insight</span><b>ranked</b></div><div class="ftrack"><i style="width:42%;background:#0FB6A2"></i></div></div>
+      <div class="frow"><div class="fl"><span>Cleared by Guardrail — consent · suitability</span><b>approved</b></div><div class="ftrack"><i style="width:28%;background:#F2921A"></i></div></div>
+      <div class="frow"><div class="fl"><span>Delivered &amp; acted → reward to Learning</span><b>outcome</b></div><div class="ftrack"><i style="width:18%;background:#FFAA15"></i></div></div>
     </div>
-    <div class="dnote">Every layer is observable and replayable &mdash; <b>LangSmith traces, drift monitoring and an A/B challenger</b> keep the crew honest, measurable and improving with every outcome.</div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>06 &middot; Data &amp; Models</span></div>
+    <div class="dnote">Every layer is observable and replayable — <b>LangSmith traces, drift monitoring and an A/B challenger</b> keep the crew honest and improving with every outcome.</div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 06 — Data &amp; Models</span></div>
 </section>
 
-<!-- ============ PAGE 8 — IMPLEMENTATION ============ -->
+<!-- ===== PAGE 8 — IMPLEMENTATION ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">07 / IMPLEMENTATION</div>
-    <h1 class="sec">A 30-day build to a<br><span class="em">working prototype</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <p class="lead" style="margin-top:5mm;max-width:170mm;">If shortlisted, the team converts the idea into a live, demoable prototype in the ~30-day window &mdash; built on synthetic data, scoped to the hero scenarios, gated weekly.</p>
-    <div class="roadmap">
-      <div class="rst"><div class="rno">1</div><div class="rwk">Week 1</div><h4>Foundation</h4><p>LangGraph orchestrator, synthetic event stream, customer-360 personas, the Sensor agent firing on real "moments".</p><div class="gate"><b>Gate:</b> a moment triggers an engagement decision end-to-end.</div></div>
-      <div class="rst"><div class="rno">2</div><div class="rwk">Week 2</div><h4>The crew</h4><p>Insight/NBA, Guardrail/consent and Personalization agents; propensity model + contextual bandit on synthetic data.</p><div class="gate"><b>Gate:</b> a suitable, consent-cleared NBA is produced and explained.</div></div>
-      <div class="rst"><div class="rno">3</div><div class="rwk">Week 3</div><h4>Act &amp; vernacular</h4><p>Action agent on mock banking APIs, one-tap execution, WhatsApp + a Hindi voice demo, EN/HI/TA messaging.</p><div class="gate"><b>Gate:</b> a customer completes an action in their language.</div></div>
-      <div class="rst"><div class="rno">4</div><div class="rwk">Week 4</div><h4>Cockpit &amp; proof</h4><p>Engagement console, impact dashboard, audit log, drift &amp; A/B hooks; hardening and the demo script.</p><div class="gate"><b>Gate:</b> 5 hero scenarios run end-to-end, audited.</div></div>
+    <div class="ix"><div class="sq ink">07</div><div class="kick">Implementation</div></div>
+    <h1 class="big">A 30-day build to a<br><span class="em">working prototype</span>.</h1>
+    <p class="lead" style="margin-top:6mm;max-width:170mm;">If shortlisted, the team converts the idea into a live, demoable prototype in the ~30-day window — built on synthetic data, scoped to the hero scenarios, gated weekly.</p>
+    <div class="road">
+      <div class="rstep s1"><div class="rn">1</div><div class="rw">Week 1</div><h4>Foundation</h4><p>LangGraph orchestrator, synthetic event stream, customer-360 personas, the Sensor agent firing on real "moments".</p><div class="g">GATE — a moment triggers an engagement decision end-to-end.</div></div>
+      <div class="rstep s2"><div class="rn">2</div><div class="rw">Week 2</div><h4>The crew</h4><p>Insight/NBA, Guardrail/consent &amp; Personalization agents; propensity model + contextual bandit on synthetic data.</p><div class="g">GATE — a suitable, consent-cleared NBA, explained.</div></div>
+      <div class="rstep s3"><div class="rn">3</div><div class="rw">Week 3</div><h4>Act &amp; vernacular</h4><p>Action agent on mock banking APIs, one-tap execution, WhatsApp + a Hindi voice demo, EN/HI/TA messaging.</p><div class="g">GATE — a customer completes an action in their language.</div></div>
+      <div class="rstep s4"><div class="rn">4</div><div class="rw">Week 4</div><h4>Cockpit &amp; proof</h4><p>Engagement console, impact dashboard, audit log, drift &amp; A/B hooks; hardening &amp; the demo script.</p><div class="g">GATE — 5 hero scenarios run end-to-end, audited.</div></div>
     </div>
-    <div class="principles">
-      <span class="pc">Synthetic data only</span><span class="pc">Consent-first</span><span class="pc">Guardrails before delivery</span><span class="pc">Vernacular by default</span><span class="pc">Everything audited</span>
+    <div class="princ"><span class="pc">Synthetic data only</span><span class="pc">Consent-first</span><span class="pc">Guardrails before delivery</span><span class="pc">Vernacular by default</span><span class="pc">Everything audited</span></div>
+    <div class="timeline">
+      <div class="tcell"><div class="dt">30 JUN</div><h5>Round 1 — idea</h5></div>
+      <div class="tcell"><div class="dt">15 JUL</div><h5>Top 10 shortlist</h5></div>
+      <div class="tcell"><div class="dt">JUL–AUG</div><h5>30-day build</h5></div>
+      <div class="tcell"><div class="dt">20 AUG</div><h5>Jury demo</h5></div>
+      <div class="tcell"><div class="dt">9–11 SEP</div><h5>GFF · Mumbai</h5></div>
     </div>
-    <div class="tltrack">
-      <div class="tl"><div class="dt">30 JUN</div><h5>Round 1 — idea</h5></div>
-      <div class="tl"><div class="dt">15 JUL</div><h5>Top 10 shortlist</h5></div>
-      <div class="tl"><div class="dt">JUL–AUG</div><h5>30-day build</h5></div>
-      <div class="tl"><div class="dt">20 AUG</div><h5>Jury demo</h5></div>
-      <div class="tl"><div class="dt">9–11 SEP</div><h5>GFF finale · Mumbai</h5></div>
-    </div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>07 &middot; Implementation</span></div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 07 — Implementation</span></div>
 </section>
 
-<!-- ============ PAGE 9 — IMPACT & BUSINESS MODEL ============ -->
+<!-- ===== PAGE 9 — IMPACT ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">08 / IMPACT &amp; BUSINESS MODEL</div>
-    <h1 class="sec">Engagement you can<br><span class="em">put a number on</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <div class="metrics">
-      <div class="mx"><div class="n">+34%</div><div class="l">monthly active engagement</div></div>
-      <div class="mx"><div class="n">₹1,240cr</div><div class="l">idle funds mobilised</div></div>
-      <div class="mx"><div class="n">2.1M</div><div class="l">dormant accounts revived</div></div>
-      <div class="mx"><div class="n">+18%</div><div class="l">cross-sell conversion</div></div>
+    <div class="ix"><div class="sq saff">08</div><div class="kick">Impact &amp; Business Model</div></div>
+    <h1 class="big">Engagement you can<br><span class="em">put a number on</span>.</h1>
+    <div class="mblocks">
+      <div class="mblk a"><div class="n">+34%</div><div class="l">monthly active engagement</div></div>
+      <div class="mblk b"><div class="n">₹1,240cr</div><div class="l">idle funds mobilised</div></div>
+      <div class="mblk c"><div class="n">2.1M</div><div class="l">dormant accounts revived</div></div>
+      <div class="mblk d"><div class="n">+18%</div><div class="l">cross-sell conversion</div></div>
     </div>
     <div class="levers">
       <div class="lev"><div class="k">01</div><div class="x"><b>Incremental product revenue</b> — proactive NBAs lift cross-sell of loans, MF, insurance &amp; deposits.</div></div>
@@ -689,63 +466,58 @@
       <div class="lev"><div class="k">04</div><div class="x"><b>Lower cost-to-serve</b> — routine engagement automated vs. human RMs &amp; call centres.</div></div>
     </div>
     <div class="rupee">
-      <div class="rlbl">Illustrative idle-CASA lever <span>— a single mechanism, conservative assumptions</span></div>
-      <div class="rcap">Of idle savings balances, a small mobilised share at a modest spread compounds across a 50-crore base:</div>
-      <div class="rbar"><div class="rseg grey" style="flex:0 0 52%">Idle CASA pool</div><div class="rseg teal" style="flex:0 0 26%">Mobilised</div><div class="rseg green" style="flex:0 0 22%">Margin uplift</div></div>
-      <div class="rassume">Figures are directional projections for the hackathon, not a forecast. Even a 1–2% lift across these levers is thousands of crores at SBI scale.</div>
+      <div class="rl">Illustrative idle-CASA lever — <b>one mechanism, conservative assumptions</b></div>
+      <div class="rc">Of idle savings balances, a small mobilised share at a modest spread compounds across a 50-crore base:</div>
+      <div class="rbar"><div class="seg g" style="flex:0 0 52%">Idle CASA pool</div><div class="seg t" style="flex:0 0 26%">Mobilised</div><div class="seg s" style="flex:0 0 22%">Margin uplift</div></div>
+      <div class="rassume">Directional projections for the hackathon, not a forecast. Even a 1–2% lift across these levers is thousands of crores at SBI scale.</div>
     </div>
-    <div class="commercial">Saarthi runs internally as SBI's engagement layer over YONO, and productises as a licensable <span class="tl">Agentic Engagement Platform</span> for SBI subsidiaries, RRBs &amp; co-operative banks &mdash; <b>per-active-customer or outcome-based (share-of-incremental-revenue) pricing.</b></div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>08 &middot; Impact</span></div>
+    <div class="commercial">Saarthi runs internally as SBI's engagement layer over YONO, and productises as a licensable <span class="tl">Agentic Engagement Platform</span> for SBI subsidiaries, RRBs &amp; co-operative banks — <b>per-active-customer or outcome-based pricing.</b></div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 08 — Impact</span></div>
 </section>
 
-<!-- ============ PAGE 10 — WHY AGENTIC ============ -->
+<!-- ===== PAGE 10 — WHY AGENTIC ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">09 / WHY AGENTIC</div>
-    <h1 class="sec">Not a chatbot.<br>A crew that <span class="em">acts</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
+    <div class="ix"><div class="sq teal">09</div><div class="kick">Why Agentic</div></div>
+    <h1 class="big">Not a chatbot.<br>A crew that <span class="em">acts</span>.</h1>
     <div class="cmp">
       <table>
-        <tr><th class="rowh"></th><th>Proactive<br>at the moment</th><th>Personalised<br>to one</th><th>Vernacular<br>+ voice</th><th>Completes<br>the action</th><th>Multi-agent<br>+ guardrails</th><th>Learns each<br>outcome</th></tr>
-        <tr><td class="rowh">Broadcast campaigns<s>SMS / push blasts</s></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk p"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td></tr>
-        <tr><td class="rowh">Rule-based NBA<s>static next-best-offer</s></td><td><span class="mk p"></span></td><td><span class="mk p"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk p"></span></td></tr>
-        <tr><td class="rowh">Support chatbot<s>reactive Q&amp;A</s></td><td><span class="mk n"></span></td><td><span class="mk p"></span></td><td><span class="mk p"></span></td><td><span class="mk p"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td></tr>
-        <tr class="me"><td class="rowh">SBI Saarthi<s>agentic engagement</s></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td></tr>
+        <tr><th class="rh"></th><th>Proactive at<br>the moment</th><th>Personalised<br>to one</th><th>Vernacular<br>+ voice</th><th>Completes<br>the action</th><th>Multi-agent<br>+ guardrails</th><th>Learns each<br>outcome</th></tr>
+        <tr><td class="rh">Broadcast campaigns<s>SMS / push blasts</s></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk p"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td></tr>
+        <tr><td class="rh">Rule-based NBA<s>static next-best-offer</s></td><td><span class="mk p"></span></td><td><span class="mk p"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td><td><span class="mk p"></span></td></tr>
+        <tr><td class="rh">Support chatbot<s>reactive Q&amp;A</s></td><td><span class="mk n"></span></td><td><span class="mk p"></span></td><td><span class="mk p"></span></td><td><span class="mk p"></span></td><td><span class="mk n"></span></td><td><span class="mk n"></span></td></tr>
+        <tr class="me"><td class="rh">SBI Saarthi<s>agentic engagement</s></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td><td><span class="mk y"></span></td></tr>
       </table>
-      <div class="cmp-legend"><span><span class="mk y"></span> Full</span><span><span class="mk p"></span> Partial</span><span><span class="mk n"></span> None</span></div>
     </div>
-    <div class="cmp-note">Each capability is something the others structurally cannot do. A campaign can't reason; a rules engine can't speak Tamil by voice and finish the action; a chatbot waits to be asked. <b>Saarthi is the only column that is proactive, vernacular, action-closing and guardrailed at once</b> — because it is a crew of autonomous agents, not a single model.</div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Idea Proposal</span><span>09 &middot; Why Agentic</span></div>
+    <div class="cmpleg"><span><span class="mk y"></span> Full</span><span><span class="mk p"></span> Partial</span><span><span class="mk n"></span> None</span></div>
+    <div class="cmpnote">Each capability is something the others structurally cannot do. A campaign can't reason; a rules engine can't speak Tamil by voice and finish the action; a chatbot waits to be asked. <b>Saarthi is the only row that is proactive, vernacular, action-closing and guardrailed at once</b> — because it's a crew of autonomous agents, not a single model.</div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Proposal</span><span>Nº 09 — Why Agentic</span></div>
 </section>
 
-<!-- ============ PAGE 11 — TRUST & CLOSE ============ -->
+<!-- ===== PAGE 11 — TRUST & CLOSE ===== -->
 <section class="page">
   <div class="pad">
-    <div class="secno">10 / TRUST &amp; SECURITY</div>
-    <h1 class="sec">Bank-grade trust,<br>by <span class="em">design</span>.</h1>
-    <div style="height:4mm"></div>
-    <hr class="rule-gold">
-    <div class="trust">
-      <div class="tcell"><div class="th">Consent</div><div class="tp">Account Aggregator (Sahamati) — tokenised, purpose-limited, revocable.</div></div>
-      <div class="tcell"><div class="th">Privacy</div><div class="tp">DPDP Act 2023 — PII redaction &amp; tokenisation, data minimisation, India residency.</div></div>
-      <div class="tcell"><div class="th">Regulatory</div><div class="tp">RBI digital-lending &amp; outsourcing norms; SEBI suitability for any MF advice.</div></div>
-      <div class="tcell"><div class="th">AI guardrails</div><div class="tp">OPA policy engine + LLM-as-judge; suitability, frequency caps, allow/deny actions.</div></div>
-      <div class="tcell"><div class="th">Security</div><div class="tp">Encryption in transit &amp; at rest, Vault/HSM secrets, RBAC, prompt-injection defence.</div></div>
-      <div class="tcell"><div class="th">Auditability</div><div class="tp">Immutable audit trail, full agent trace, explainable decisions, human override.</div></div>
+    <div class="ix"><div class="sq ink">10</div><div class="kick">Trust &amp; Security</div></div>
+    <h1 class="big">Bank-grade trust,<br>by <span class="em">design</span>.</h1>
+    <div class="tgrid">
+      <div class="tc"><div class="th">Consent</div><div class="tp">Account Aggregator (Sahamati) — tokenised, purpose-limited, revocable.</div></div>
+      <div class="tc"><div class="th">Privacy</div><div class="tp">DPDP Act 2023 — PII redaction &amp; tokenisation, data minimisation, India residency.</div></div>
+      <div class="tc"><div class="th">Regulatory</div><div class="tp">RBI digital-lending &amp; outsourcing norms; SEBI suitability for any MF advice.</div></div>
+      <div class="tc"><div class="th">AI guardrails</div><div class="tp">OPA policy engine + LLM-as-judge; suitability, frequency caps, allow/deny actions.</div></div>
+      <div class="tc"><div class="th">Security</div><div class="tp">Encryption in transit &amp; at rest, Vault/HSM secrets, RBAC, prompt-injection defence.</div></div>
+      <div class="tc"><div class="th">Auditability</div><div class="tp">Immutable audit trail, full agent trace, explainable decisions, human override.</div></div>
     </div>
-    <div class="closing"><p>Saarthi makes every one of SBI's 50 crore customers feel personally banked &mdash; proactively, in their own language, with the action already done. That is Digital Engagement, finished.</p></div>
-    <div class="endstamp"><div class="stamp"><span class="dot"></span> SBI SAARTHI <span class="dot"></span></div></div>
+    <div class="close"><p>Saarthi makes every one of SBI's 50 crore customers feel <span class="em">personally banked</span> — proactively, in their <span class="tl">own language</span>, with the action already done. That is Digital Engagement, finished.</p></div>
+    <div class="stamp"><span class="sd"></span> SBI Saarthi <span class="sd"></span></div>
     <div class="refs">
-      <div class="refrow"><span class="rk">Demo</span> Live prototype — <b>saudsatopay.github.io/sbi-saarthi</b> &nbsp;·&nbsp; Code — <b>github.com/SaudSatopay/sbi-saarthi</b></div>
-      <div class="refrow"><span class="rk">Stack</span> LangGraph · Claude &amp; fine-tuned SLMs · AI4Bharat/Bhashini &amp; Sarvam · XGBoost &amp; contextual bandits · Kafka · Postgres + pgvector · Account Aggregator · OPA</div>
-      <div class="refrow"><span class="rk">Context</span> SBI Hackathon @ Global Fintech Fest 2026 · Theme: Agentic AI &amp; Emerging Tech · Problem statement: Digital Engagement</div>
-      <div class="refrow"><span class="rk">Note</span> Concept prototype by Team SAS CODIES. Figures are illustrative projections. Not affiliated with State Bank of India.</div>
+      <div class="rr"><span class="rk">Demo</span> Live prototype — <b>saudsatopay.github.io/sbi-saarthi</b> &nbsp;·&nbsp; Code — <b>github.com/SaudSatopay/sbi-saarthi</b></div>
+      <div class="rr"><span class="rk">Stack</span> LangGraph · Claude &amp; SLMs · AI4Bharat/Bhashini &amp; Sarvam · XGBoost &amp; contextual bandits · Kafka · Postgres + pgvector · Account Aggregator · OPA</div>
+      <div class="rr"><span class="rk">Context</span> SBI Hackathon @ Global Fintech Fest 2026 · Agentic AI &amp; Emerging Tech · Digital Engagement · Concept by Team SAS CODIES. Figures illustrative. Not affiliated with State Bank of India.</div>
     </div>
-    <div class="footer-tag"><span><b>SBI SAARTHI</b> &middot; Team SAS CODIES</span><span>10 &middot; Trust &amp; Close</span></div>
   </div>
+  <div class="ft"><span><span class="d"></span><b>SBI SAARTHI</b> · Team SAS CODIES</span><span>Nº 10 — Trust &amp; Close</span></div>
 </section>
 
 </body>
