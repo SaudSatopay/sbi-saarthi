@@ -94,9 +94,9 @@ export interface ArchNode {
 export const TEAM = {
   name: 'SAS CODIES',
   members: [
-    { name: '[ Member 1 ]', org: 'Organization / College' },
-    { name: '[ Member 2 ]', org: 'Organization / College' },
-    { name: '[ Member 3 ]', org: 'Organization / College' },
+    { name: 'Saud Satopay', org: '' },
+    { name: 'Aryan Walunj', org: '' },
+    { name: 'Sahil Addagatla', org: '' },
   ],
   theme: 'Agentic AI & Emerging Tech',
   problem: 'Digital Engagement',

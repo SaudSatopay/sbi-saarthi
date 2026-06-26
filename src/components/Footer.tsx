@@ -33,7 +33,8 @@ export default function Footer() {
             <ul className="mt-2 space-y-1 text-sm text-muted">
               {TEAM.members.map((m) => (
                 <li key={m.name}>
-                  {m.name} — {m.org}
+                  {m.name}
+                  {m.org ? ` — ${m.org}` : ''}
                 </li>
               ))}
             </ul>
