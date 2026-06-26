@@ -1,0 +1,55 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SBI Saarthi — Agentic AI Engagement Concierge">
+  <defs>
+    <radialGradient id="g1" cx="86%" cy="12%" r="62%">
+      <stop offset="0%" stop-color="#FFAA15" stop-opacity="0.24"/><stop offset="100%" stop-color="#FFAA15" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="8%" cy="98%" r="60%">
+      <stop offset="0%" stop-color="#0FB6A2" stop-opacity="0.22"/><stop offset="100%" stop-color="#0FB6A2" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#1c2433"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="360" fill="#0B0F17"/>
+  <rect width="1200" height="360" fill="url(#dots)"/>
+  <rect width="1200" height="360" fill="url(#g1)"/>
+  <rect width="1200" height="360" fill="url(#g2)"/>
+
+  <!-- left: wordmark + copy -->
+  <text x="70" y="84" font-family="'Courier New',monospace" font-size="14.5" letter-spacing="4" fill="#FFAA15" font-weight="700">SBI HACKATHON &#183; GFF 2026 &#183; DIGITAL ENGAGEMENT</text>
+  <text x="66" y="184" font-family="Arial,Helvetica,sans-serif" font-size="84" font-weight="800" letter-spacing="-2.5" fill="#FFFFFF">SBI <tspan fill="#FFAA15">Saarthi</tspan></text>
+  <text x="70" y="230" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" fill="#37D6C3">Your bank, one step ahead.</text>
+  <text x="70" y="270" font-family="Arial,Helvetica,sans-serif" font-size="16.5" fill="#AEB3C0">An Agentic AI engagement concierge &#8212; a crew of autonomous agents that</text>
+  <text x="70" y="293" font-family="Arial,Helvetica,sans-serif" font-size="16.5" fill="#AEB3C0">sense each money-moment, reach you in your language, and finish the action.</text>
+
+  <g font-family="'Courier New',monospace" font-size="12.5">
+    <rect x="70" y="312" width="138" height="28" rx="14" fill="none" stroke="#2a3340"/><text x="139" y="330" text-anchor="middle" fill="#C9CCD6">Team SAS CODIES</text>
+    <rect x="216" y="312" width="92" height="28" rx="14" fill="none" stroke="#2a3340"/><text x="262" y="330" text-anchor="middle" fill="#C9CCD6">Proactive</text>
+    <rect x="316" y="312" width="100" height="28" rx="14" fill="none" stroke="#2a3340"/><text x="366" y="330" text-anchor="middle" fill="#C9CCD6">Vernacular</text>
+    <rect x="424" y="312" width="128" height="28" rx="14" fill="none" stroke="#2a3340"/><text x="488" y="330" text-anchor="middle" fill="#C9CCD6">Action-closing</text>
+  </g>
+
+  <!-- right: agent-crew orbit -->
+  <g transform="translate(990,178)">
+    <circle r="128" fill="none" stroke="#1f2a3a" stroke-dasharray="3 6"/>
+    <circle r="80" fill="none" stroke="#22304a" stroke-dasharray="3 6"/>
+    <g stroke="#33425c" stroke-width="1.4">
+      <line x1="0" y1="0" x2="0" y2="-80"/>
+      <line x1="0" y1="0" x2="76" y2="-25"/>
+      <line x1="0" y1="0" x2="47" y2="65"/>
+      <line x1="0" y1="0" x2="-47" y2="65"/>
+      <line x1="0" y1="0" x2="-76" y2="-25"/>
+    </g>
+    <line x1="0" y1="80" x2="0" y2="124" stroke="#33425c" stroke-width="1.4" stroke-dasharray="3 4"/>
+    <g font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="13" text-anchor="middle">
+      <circle cx="0" cy="-80" r="17" fill="#37D6C3"/><text x="0" y="-75" fill="#08221F">S</text>
+      <circle cx="76" cy="-25" r="17" fill="#37D6C3"/><text x="76" y="-20" fill="#08221F">I</text>
+      <circle cx="47" cy="65" r="17" fill="#37D6C3"/><text x="47" y="70" fill="#08221F">G</text>
+      <circle cx="-47" cy="65" r="17" fill="#37D6C3"/><text x="-47" y="70" fill="#08221F">P</text>
+      <circle cx="-76" cy="-25" r="17" fill="#37D6C3"/><text x="-76" y="-20" fill="#08221F">A</text>
+      <circle cx="0" cy="124" r="14" fill="#FFFFFF"/><text x="0" y="129" fill="#0B0F17" font-size="11">©</text>
+      <circle cx="0" cy="0" r="30" fill="#FFAA15"/><text x="0" y="6" fill="#17171F" font-size="17">O</text>
+    </g>
+  </g>
+</svg>
