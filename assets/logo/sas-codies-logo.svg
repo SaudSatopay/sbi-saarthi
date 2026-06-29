@@ -1,0 +1,22 @@
+<svg width="880" height="260" viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAS CODIES">
+  <defs>
+    <linearGradient id="ig" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#3A3168"/>
+      <stop offset="1" stop-color="#191329"/>
+    </linearGradient>
+  </defs>
+  <!-- mark -->
+  <g transform="translate(20,10)">
+    <rect x="18" y="18" width="204" height="204" rx="54" fill="url(#ig)" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M100 80 L68 120 L100 160" stroke="#FFFFFF" stroke-width="14"/>
+      <path d="M140 80 L172 120 L140 160" stroke="#FFFFFF" stroke-width="14"/>
+      <path d="M104 158 L136 82" stroke="#37D6C3" stroke-width="13"/>
+    </g>
+    <circle cx="180" cy="64" r="6.5" fill="#FFB23E"/>
+  </g>
+  <!-- wordmark -->
+  <text x="289" y="132" font-family="'Bahnschrift SemiBold','Segoe UI',sans-serif" font-weight="700" font-size="106" letter-spacing="1" fill="#17171F">SAS</text>
+  <text x="292" y="180" font-family="'Cascadia Mono','Consolas',monospace" font-weight="600" font-size="31" letter-spacing="10" fill="#0FB6A2">CODIES</text>
+  <rect x="293" y="198" width="171" height="5" rx="2.5" fill="#FFB23E"/>
+</svg>

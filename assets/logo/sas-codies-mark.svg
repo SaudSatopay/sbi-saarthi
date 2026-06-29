@@ -1,0 +1,15 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAS CODIES logo mark">
+  <defs>
+    <linearGradient id="ig" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#3A3168"/>
+      <stop offset="1" stop-color="#191329"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="204" height="204" rx="54" fill="url(#ig)" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M100 80 L68 120 L100 160" stroke="#FFFFFF" stroke-width="14"/>
+    <path d="M140 80 L172 120 L140 160" stroke="#FFFFFF" stroke-width="14"/>
+    <path d="M104 158 L136 82" stroke="#37D6C3" stroke-width="13"/>
+  </g>
+  <circle cx="180" cy="64" r="6.5" fill="#FFB23E"/>
+</svg>
